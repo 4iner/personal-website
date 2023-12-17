@@ -1,13 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
-import GithubIcon from '../images/github-icon.png';
+import GithubIcon from '../../images/github-icon.png';
 import './header.css';
-import HeaderItem from './HeaderItem';
+import HeaderItem from '../HeaderItem/HeaderItem';
+
+const test = '';
 
 const Header = ({ siteTitle }) => (
     <header
-        class="header"
+        className="header"
         style={{
             padding: `var(--space-4) var(--size-gutter)`,
         }}>

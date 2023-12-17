@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 
-import Layout from '../components/layout';
+import Layout from '../components/Layout/Layout';
 import Seo from '../components/seo';
 import * as styles from '../components/index.module.css';
 import { motion } from 'framer-motion';
@@ -26,7 +26,7 @@ const IndexPage = () => {
                 }}
                 className="object"
                 drag>
-                HELLO
+                Drag me :D
             </motion.div>
         </Layout>
     );

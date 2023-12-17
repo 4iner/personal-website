@@ -1,0 +1,10 @@
+.headerItem {
+    border: 3px solid black;
+    border-radius: 7px;
+    box-shadow: white;
+    width: 200px;
+    text-align: center;
+    word-wrap: break-word;
+    height: 30px;
+    line-height: 25px;
+}
