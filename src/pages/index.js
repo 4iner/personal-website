@@ -8,7 +8,7 @@ const indexPage = () => (
     <Layout>
         <Seo title="Home" />
         <div>
-            <p>Website is currently in development.</p>
+            <p>Website is currssaently in development.</p>
         </div>
         <motion.div
             dragConstraints={{
@@ -19,7 +19,7 @@ const indexPage = () => (
             }}
             className="object"
             drag>
-            Drag me :D
+            Drag me :Dsaaasdasd
         </motion.div>
     </Layout>
 );

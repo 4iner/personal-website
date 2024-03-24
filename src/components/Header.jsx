@@ -1,10 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
-import GithubIcon from '../../images/github-icon.png';
-import Button from '../Button';
-import ButtonGroup from '../ButtonGroup';
-import styled from '../styled';
+import GithubIcon from '../images/github-icon.png';
+import Button from './Button';
+import ButtonGroup from './ButtonGroup';
+import styled from './styled';
 
 const Header = ({ siteTitle, className }) => (
     <header
@@ -26,7 +26,7 @@ const Header = ({ siteTitle, className }) => (
             style={{
                 display: 'flex',
             }}>
-            <Button title="Projects" />
+            <Button to="/projects" title="Projects" />
             <Button title="Work Experience" />
             <Button title="About me" />
         </ButtonGroup>
@@ -74,6 +74,7 @@ const StyledHeader = styled(Header)`
     );
     margin: 0 auto;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid violet;

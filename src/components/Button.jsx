@@ -1,14 +1,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import styled from '../styled';
+import styled from './styled';
+import { Link } from 'gatsby';
 
-const Button = ({ title, onClick, tooltip, className }) => {
-    console.log(title);
+console.log('this is styled');
+console.log(styled);
+const Button = ({ title, onClick, to, className }) => {
+    const redirect = to ? 'window.location.href = ' + to : null;
     return (
-        <ButtonDiv>
-            <button className={className} onClick={onClick}>
-                {title}
-            </button>
+        <ButtonDiv onclick={redirect}>
+            <Link to={to}>
+                <button className={className} onClick={onClick}>
+                    {title}
+                </button>
+            </Link>
         </ButtonDiv>
     );
 };
@@ -16,12 +21,13 @@ const Button = ({ title, onClick, tooltip, className }) => {
 Button.propTypes = {
     title: PropTypes.string,
     onClick: PropTypes.function,
+    to: PropTypes.string,
     tooltip: PropTypes.string,
     className: PropTypes.string,
 };
 
 Button.defaultProps = {
-    siteTitle: ``,
+    siteTitle: '',
 };
 
 const ButtonDiv = styled('div')`
@@ -43,6 +49,7 @@ const StyledButton = styled(Button)`
     width: 100%;
     color: black;
     box-sizing: border-box;
+    font-size: 15px;
     padding: ${({ theme }) => theme.size.spacing.small}px;
     background-image: radial-gradient(
         ellipse at center,
@@ -51,7 +58,7 @@ const StyledButton = styled(Button)`
     );
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-size: 0% 0%;
+    background-size: 50% 0%;
     background-color: rgba(0, 0, 0, 0);
 
     transition:
