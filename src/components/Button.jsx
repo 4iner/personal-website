@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import styled from './styled';
 import { Link } from 'gatsby';
 
-console.log('this is styled');
-console.log(styled);
 const Button = ({ title, onClick, to, className }) => {
     const redirect = to ? 'window.location.href = ' + to : null;
     return (

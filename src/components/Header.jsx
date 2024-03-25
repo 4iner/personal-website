@@ -27,7 +27,7 @@ const Header = ({ siteTitle, className }) => (
                 display: 'flex',
             }}>
             <Button to="/projects" title="Projects" />
-            <Button title="Work Experience" />
+            <Button to="/work-experience" title="Work Experience" />
             <Button title="About me" />
         </ButtonGroup>
 

@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import Layout from '../components/Layout';
 import Seo from '../components/seo';
-import { motion } from 'framer-motion';
 
 const IndexPage = () => (
     <Layout>
