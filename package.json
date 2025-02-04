@@ -5,10 +5,15 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@emotion/react": "11.11.1",
     "@emotion/styled": "11.11.0",
     "@mui/material": "5.15.1",
+    "@react-three/drei": "^9.119.0",
+    "@react-three/fiber": "^8.17.10",
+    "@types/three": "^0.170.0",
     "babel-plugin-styled-components": "2.1.4",
+    "babel-polyfill": "^6.26.0",
     "framer-motion": "10.16.16",
     "gatsby": "^5.13.3",
     "gatsby-plugin-gatsby-cloud": "^5.13.0",
@@ -30,7 +35,8 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.21.0",
     "sort-by": "^0.0.2",
-    "styled-components": "6.1.1"
+    "styled-components": "6.1.1",
+    "three": "^0.171.0"
   },
   "devDependencies": {
     "eslint": "8.56.0",
