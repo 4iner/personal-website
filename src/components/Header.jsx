@@ -22,7 +22,6 @@ const Header = ({ siteTitle, className }) => (
             <Button title="Home" />
         </Link>
         <ButtonGroup
-            className="TEST"
             style={{
                 display: 'flex',
             }}>
@@ -70,15 +69,15 @@ Header.defaultProps = {
 const StyledHeader = styled(Header)`
     background-image: linear-gradient(
         0deg,
-        ${({ theme }) => theme.color.primary} 0%,
-        ${({ theme }) => theme.color.secondary} 100%
+        ${({ theme }) => theme.color.contrastPrimary || '#2d2d2d'} 0%,
+        ${({ theme }) => theme.color.contrastSecondary || '#1a1a1a'} 100%
     );
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid violet;
+    border-bottom: 1px solid ${({ theme }) => theme.color.accent || '#8a2be2'};
 `;
 
 export default StyledHeader;

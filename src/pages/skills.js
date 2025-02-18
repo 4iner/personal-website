@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Text, OrbitControls, Html } from '@react-three/drei';
 import Layout from '../components/Layout';
+import SkillCard from '../components/SkillCard';
 
 const skills = [
     { name: 'Java', description: 'Enterprise development with Spring Boot and Android apps.' },
@@ -14,30 +15,6 @@ const skills = [
     { name: 'C#', description: '.NET development and Unity game programming.' },
 ];
 
-function SkillCard({ position, rotation, skill, isActive, onClick }) {
-    return (
-        <group position={position} rotation={rotation} onClick={onClick}>
-            <mesh>
-                <planeGeometry args={[2, 1]} />
-                <meshBasicMaterial 
-                    color={isActive ? "#ffffff" : "#cccccc"}
-                    transparent
-                    opacity={isActive ? 1 : 0.7}
-                />
-            </mesh>
-            <Text
-                position={[0, 0, 0.01]}
-                fontSize={0.2}
-                color="#000000"
-                anchorX="center"
-                anchorY="middle"
-            >
-                {skill.name}
-            </Text>
-        </group>
-    );
-}
-
 function Carousel() {
     const [activeSkill, setActiveSkill] = useState(null);
     const [activeIndex, setActiveIndex] = useState(null);
@@ -47,57 +24,41 @@ function Carousel() {
     const previousMouseX = useRef(0);
     const dragStartRotation = useRef(0);
     const dragVelocity = useRef(0);
-    const lastDragDirection = useRef(1); // 1 for right, -1 for left
+    const lastDragDirection = useRef(1);
+    const [carouselRadius, setCarouselRadius] = useState(5);
+    const touchStartTime = useRef(0);
+    const touchStartPos = useRef(null);
 
-    const handlePointerDown = (e) => {
-        isDragging.current = true;
-        previousMouseX.current = e.clientX;
-        dragStartRotation.current = groupRef.current.rotation.y;
-        dragVelocity.current = 0;
-    };
+    // Update radius based on screen width
+    React.useEffect(() => {
+        const updateRadius = () => {
+            const width = window.innerWidth;
+            // Scale radius between 3.5 and 6 based on screen width
+            const newRadius = Math.max(3.5, Math.min(6, width / 300));
+            setCarouselRadius(newRadius);
+        };
 
-    const handlePointerMove = (e) => {
-        if (isDragging.current && !activeSkill) {
-            const deltaX = e.clientX - previousMouseX.current;
-            const rotationSpeed = 0.002;
-            
-            const rotation = deltaX * rotationSpeed;
-            groupRef.current.rotation.y += rotation;
-            
-            // Store drag direction
-            lastDragDirection.current = Math.sign(deltaX) || 1;
-            
-            dragVelocity.current = rotation;
-            previousMouseX.current = e.clientX;
-        }
-    };
+        // Initial update
+        updateRadius();
 
-    const handlePointerUp = (e) => {
-        if (isDragging.current) {
-            isDragging.current = false;
-            
-            // Calculate final velocity based on movement speed
-            const deltaX = e.clientX - previousMouseX.current;
-            const deltaTime = performance.now() - previousMouseX.current;
-            dragVelocity.current = (deltaX * 0.001) / (deltaTime || 1);
-        }
-    };
+        // Update on resize
+        window.addEventListener('resize', updateRadius);
+        return () => window.removeEventListener('resize', updateRadius);
+    }, []);
 
     useFrame((state, delta) => {
         if (!activeSkill && !isDragging.current) {
             if (Math.abs(dragVelocity.current) > 0.0001) {
-                // Momentum follows drag direction
                 dragVelocity.current *= 0.98;
                 groupRef.current.rotation.y += dragVelocity.current;
             } else {
                 dragVelocity.current = 0;
-                // Auto-rotate in the last drag direction
                 groupRef.current.rotation.y += 0.001 * lastDragDirection.current;
                 
-                if (groupRef.current.rotation.y >= Math.PI * 2) {
-                    groupRef.current.rotation.y = 0;
-                } else if (groupRef.current.rotation.y <= -Math.PI * 2) {
-                    groupRef.current.rotation.y = 0;
+                if (groupRef.current.rotation.y > Math.PI) {
+                    groupRef.current.rotation.y -= Math.PI * 2;
+                } else if (groupRef.current.rotation.y < -Math.PI) {
+                    groupRef.current.rotation.y += Math.PI * 2;
                 }
             }
         } else if (activeSkill) {
@@ -107,52 +68,157 @@ function Carousel() {
         }
     });
 
+    const handlePointerDown = (e) => {
+        isDragging.current = true;
+        previousMouseX.current = e.touches ? e.touches[0].clientX : e.clientX;
+        dragStartRotation.current = groupRef.current.rotation.y;
+        dragVelocity.current = 0;
+    };
+
+    const handlePointerMove = (e) => {
+        if (isDragging.current && !activeSkill) {
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const deltaX = clientX - previousMouseX.current;
+            const rotationSpeed = 0.002;
+            
+            const rotation = deltaX * rotationSpeed;
+            groupRef.current.rotation.y += rotation;
+            
+            lastDragDirection.current = Math.sign(deltaX) || 1;
+            
+            dragVelocity.current = rotation;
+            previousMouseX.current = clientX;
+        }
+    };
+
+    const handlePointerUp = (e) => {
+        if (isDragging.current) {
+            isDragging.current = false;
+            
+            const clientX = e.touches ? 
+                e.changedTouches[0].clientX : 
+                e.clientX;
+            
+            const deltaX = clientX - previousMouseX.current;
+            const deltaTime = performance.now() - previousMouseX.current;
+            dragVelocity.current = (deltaX * 0.001) / (deltaTime || 1);
+        }
+    };
+
+    const handleTouchStart = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        isDragging.current = false; // Start as not dragging
+        touchStartTime.current = Date.now();
+        touchStartPos.current = e.touches[0].clientX;
+        previousMouseX.current = e.touches[0].clientX;
+        dragStartRotation.current = groupRef.current.rotation.y;
+        dragVelocity.current = 0;
+    };
+
+    const handleTouchMove = (e) => {
+        if (!touchStartPos.current) return;
+        
+        e.preventDefault();
+        e.stopPropagation();
+
+        const moveX = Math.abs(e.touches[0].clientX - touchStartPos.current);
+        
+        // Only start dragging if we've moved significantly
+        if (moveX > 5) {
+            isDragging.current = true;
+        }
+
+        if (isDragging.current) {
+            const touch = e.touches[0];
+            const deltaX = touch.clientX - previousMouseX.current;
+            const rotationSpeed = 0.005;
+            
+            groupRef.current.rotation.y += deltaX * rotationSpeed;
+            lastDragDirection.current = Math.sign(deltaX) || 1;
+            dragVelocity.current = deltaX * rotationSpeed;
+            previousMouseX.current = touch.clientX;
+        }
+    };
+
+    const handleTouchEnd = (e) => {
+        if (!isDragging.current) return;
+        
+        e.preventDefault();
+        e.stopPropagation();
+        
+        isDragging.current = false;
+        
+        const touch = e.changedTouches[0];
+        const deltaX = touch.clientX - previousMouseX.current;
+        dragVelocity.current = deltaX * 0.002; // Adjusted momentum
+    };
+
+    React.useEffect(() => {
+        // Prevent default touch behavior on the canvas
+        const canvas = document.querySelector('canvas');
+        if (canvas) {
+            canvas.style.touchAction = 'none';
+        }
+    }, []);
+
     const handleClick = (skill, index) => {
-        const dragDistance = Math.abs(groupRef.current.rotation.y - dragStartRotation.current);
-        if (dragDistance < 0.01) {
-            if (activeSkill === skill) {
-                setActiveSkill(null);
-                setActiveIndex(null);
-                groupRef.current.rotation.y = groupRef.current.rotation.y % (Math.PI * 2);
-                targetRotation.current = groupRef.current.rotation.y;
-            } else {
-                setActiveSkill(skill);
-                setActiveIndex(index);
-                
-                const currentRotation = groupRef.current.rotation.y % (Math.PI * 2);
-                const normalizedCurrent = currentRotation < 0 ? currentRotation + Math.PI * 2 : currentRotation;
-                
-                const targetAngle = -(index / skills.length) * Math.PI * 2;
-                const normalizedTarget = targetAngle % (Math.PI * 2);
-                
-                let diff = normalizedTarget - normalizedCurrent;
-                if (Math.abs(diff) > Math.PI) {
-                    diff = diff > 0 ? diff - Math.PI * 2 : diff + Math.PI * 2;
-                }
-                
-                targetRotation.current = normalizedCurrent + diff;
+        // Only check drag distance if we were actually dragging
+        if (isDragging.current) {
+            const dragDistance = Math.abs(groupRef.current.rotation.y - dragStartRotation.current);
+            if (dragDistance > 0.01) return; // Ignore if we've dragged too far
+        }
+
+        if (activeSkill === skill) {
+            setActiveSkill(null);
+            setActiveIndex(null);
+            groupRef.current.rotation.y = groupRef.current.rotation.y % (Math.PI * 2);
+            targetRotation.current = groupRef.current.rotation.y;
+        } else {
+            setActiveSkill(skill);
+            setActiveIndex(index);
+            
+            const currentRotation = groupRef.current.rotation.y % (Math.PI * 2);
+            const normalizedCurrent = currentRotation < 0 ? currentRotation + Math.PI * 2 : currentRotation;
+            
+            const targetAngle = -(index / skills.length) * Math.PI * 2;
+            const normalizedTarget = targetAngle % (Math.PI * 2);
+            
+            let diff = normalizedTarget - normalizedCurrent;
+            if (Math.abs(diff) > Math.PI) {
+                diff = diff > 0 ? diff - Math.PI * 2 : diff + Math.PI * 2;
             }
+            
+            targetRotation.current = normalizedCurrent + diff;
         }
     };
 
     return (
-        <group 
-            ref={groupRef}
-            onPointerDown={handlePointerDown}
-            onPointerMove={handlePointerMove}
-            onPointerUp={handlePointerUp}
-            onPointerLeave={handlePointerUp}
-        >
+        <group ref={groupRef}>
+            <mesh
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerLeave={handlePointerUp}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+                visible={false}
+            >
+                <cylinderGeometry args={[carouselRadius + 2, carouselRadius + 2, 0.1, 32]} />
+                <meshBasicMaterial transparent opacity={0} />
+            </mesh>
+
+            {/* Carousel content */}
             {skills.map((skill, index) => {
                 const angle = (index / skills.length) * Math.PI * 2;
-                const radius = 4;
                 return (
                     <SkillCard
                         key={skill.name}
                         position={[
-                            Math.sin(angle) * radius,
+                            Math.sin(angle) * carouselRadius,
                             0,
-                            Math.cos(angle) * radius
+                            Math.cos(angle) * carouselRadius
                         ]}
                         rotation={[0, angle, 0]}
                         skill={skill}
@@ -199,15 +265,22 @@ function Carousel() {
 const SkillsPage = () => (
     <Layout>
         <div style={{ 
-            width: '100%', 
+            width: '100vw',           // Full viewport width
             height: '70vh',
+            margin: '0 auto',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            position: 'relative',     // Added for proper positioning
+            left: '50%',              // Center the div
+            right: '50%',             // Center the div
+            marginLeft: '-50vw',      // Negative margin to span full width
+            marginRight: '-50vw',     // Negative margin to span full width
+            background: 'transparent' // Optional: ensure background is transparent
         }}>
             <Canvas 
                 camera={{ 
-                    position: [0, 2, 11],
+                    position: [0, 2, 13.5],
                     fov: 45,
                 }}
                 gl={{ alpha: true }}

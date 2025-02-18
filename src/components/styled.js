@@ -1,9 +1,23 @@
 import { createStyled, createTheme } from '@mui/system';
 
+
 const defaultThemeObj = {
     color: {
-        primary: '#74EBD5',
-        secondary: '#70ACE6',
+        // Main colors
+        primary: '#74EBD5',      
+        secondary: '#70ACE6',    
+        
+        // Contrasting colors for header
+        contrastPrimary: '#2d2d2d',    // Dark gray
+        contrastSecondary: '#1a1a1a',  // Darker gray
+        
+        // Accent colors
+        accent: '#8a2be2',       // Violet for highlights
+        accentLight: '#9d4ced',  // Lighter violet for hover states
+        
+        // Text colors
+        text: '#333333',         // Dark gray for main text
+        textLight: '#ffffff'      // White text for dark backgrounds
     },
     size: {
         spacing: {
