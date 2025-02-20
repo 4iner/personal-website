@@ -22,10 +22,10 @@ const StyledLayout = styled('div')`
         max-width: var(--size-content);
         padding: var(--size-gutter);
         background: #333333;
-        border-radius: 8px;
+        border-radius: 7px;
         margin-top: 20px;
-        border: 1px solid #4A4A4A;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
     }
 
     footer {
