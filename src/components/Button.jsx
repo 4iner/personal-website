@@ -34,7 +34,7 @@ const ButtonDiv = styled('div')`
 
     button {
         border: none;
-        border-radius: 8px;
+        border-radius: ${props => props.theme.size.borderRadius.medium};
         height: 32px;
         display: flex;
         align-items: center;

@@ -12,8 +12,8 @@ const defaultThemeObj = {
         contrastSecondary: '#1a1a1a',  // Darker gray
         
         // Accent colors
-        accent: '#8a2be2',       // Violet for highlights
-        accentLight: '#9d4ced',  // Lighter violet for hover states
+        accent: '#FF6B6B',       // Coral red for highlights
+        accentLight: '#FF8787',  // Lighter coral for hover states
         
         // Text colors
         text: '#333333',         // Dark gray for main text
@@ -29,6 +29,11 @@ const defaultThemeObj = {
             medium: 10,
             large: 15,
         },
+        borderRadius: {
+            small: '4px',
+            medium: '8px',
+            large: '12px'
+        }
     },
 };
 
