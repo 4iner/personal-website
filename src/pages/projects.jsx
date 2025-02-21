@@ -3,11 +3,16 @@ import Layout from '../components/Layout';
 import Seo from '../components/seo';
 import ProjectItem from '../components/ProjectItem';
 import styled from '../components/styled';
+import { motion } from 'framer-motion';
 
 const ProjectsContainer = styled('div')`
     max-width: 800px;
     margin: 0 auto;
     padding: 40px 24px;
+
+    @media (max-width: ${props => props.theme.size.mobile.breakpoint}) {
+        padding: 24px 16px;
+    }
 `;
 
 const Title = styled('h1')`
@@ -15,7 +20,24 @@ const Title = styled('h1')`
     margin-bottom: 32px;
     font-size: 2rem;
     letter-spacing: 0.5px;
+    text-align: center;
 `;
+
+const ProjectList = styled(motion.div)`
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+`;
+
+const container = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2
+        }
+    }
+};
 
 const projects = [
     {
@@ -41,13 +63,20 @@ const ProjectsPage = () => (
         <Seo title={'Projects'} />
         <ProjectsContainer>
             <Title>My Projects</Title>
-            {projects.map((project, index) => (
-                <ProjectItem
-                    key={index}
-                    title={project.title}
-                    description={project.description}
-                />
-            ))}
+            <ProjectList
+                variants={container}
+                initial="hidden"
+                animate="show"
+            >
+                {projects.map((project, index) => (
+                    <ProjectItem
+                        key={index}
+                        index={index}
+                        title={project.title}
+                        description={project.description}
+                    />
+                ))}
+            </ProjectList>
         </ProjectsContainer>
     </Layout>
 );

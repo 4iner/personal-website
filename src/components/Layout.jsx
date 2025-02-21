@@ -20,8 +20,6 @@ const StyledLayout = styled('div')`
     .content-wrapper {
         margin: 0 auto;
         max-width: var(--size-content);
-        padding: var(--size-gutter);
-        padding-left: calc(var(--size-gutter) + 1px);
         background: #333333;
         border-radius: 7px;
         margin-top: 20px;
@@ -29,7 +27,6 @@ const StyledLayout = styled('div')`
         margin-bottom: 20px;
 
         @media (max-width: ${props => props.theme.size.mobile.breakpoint}) {
-            padding: var(--space-4);
             margin-left: var(--space-4);
             margin-right: var(--space-4);
             min-width: ${props => props.theme.size.mobile.minWidth};

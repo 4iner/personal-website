@@ -265,23 +265,24 @@ function Carousel() {
 const SkillsPage = () => (
     <Layout>
         <div style={{ 
-            width: '100vw',           // Full viewport width
+            width: '100%',            // Changed from 100vw to 100%
             height: '70vh',
             margin: '0 auto',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            position: 'relative',     // Added for proper positioning
-            left: '50%',              // Center the div
-            right: '50%',             // Center the div
-            marginLeft: '-50vw',      // Negative margin to span full width
-            marginRight: '-50vw',     // Negative margin to span full width
-            background: 'transparent' // Optional: ensure background is transparent
+            position: 'relative',
+            overflow: 'hidden',       // Added to prevent overflow
+            background: 'transparent'
         }}>
             <Canvas 
                 camera={{ 
                     position: [0, 2, 13.5],
                     fov: 45,
+                }}
+                style={{
+                    width: '100%',    // Added to ensure canvas fits container
+                    height: '100%',   // Added to ensure canvas fits container
                 }}
                 gl={{ alpha: true }}
             >

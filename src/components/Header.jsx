@@ -21,26 +21,16 @@ const Header = ({ siteTitle, className }) => {
     }, []);
 
     return (
-        <header className={`${className} ${isScrolled ? 'scrolled' : ''}`}>
-            <button 
-                className={`menu-toggle ${isMenuOpen ? 'open' : ''}`}
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+        <header className={`${className} ${isScrolled ? 'scrolled' : ''} ${isMenuOpen ? 'menu-open' : ''}`}>
             <div className="header-content">
-                <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
-                    <ButtonGroup>
-                        <Button to="/" title="Home" />
-                        <Button to="/projects" title="Projects" />
-                        <Button to="/work-experience" title="Work Experience" />
-                        <Button to="/skills" title="Skills" />
-                        <Button title="About me" />
-                    </ButtonGroup>
-                </nav>
-
+                <button 
+                    className={`menu-toggle ${isMenuOpen ? 'open' : ''}`}
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <div className="right-section">
                     <Link
                         to="https://github.com/4iner"
@@ -57,6 +47,15 @@ const Header = ({ siteTitle, className }) => {
                         </div>
                     </Link>
                 </div>
+                <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
+                    <ButtonGroup>
+                        <Button to="/" title="Home" />
+                        <Button to="/projects" title="Projects" />
+                        <Button to="/work-experience" title="Work Experience" />
+                        <Button to="/skills" title="Skills" />
+                        <Button title="About me" />
+                    </ButtonGroup>
+                </nav>
             </div>
         </header>
     );
@@ -110,9 +109,10 @@ const StyledHeader = styled(Header)`
 
         @media (max-width: ${props => props.theme.size.mobile.breakpoint}) {
             flex-wrap: wrap;
-            padding: var(--space-3) 0;
+            padding: 10px 0;
             margin-left: var(--space-4);
             margin-right: var(--space-4);
+            min-height: 41px;
         }
     }
 
@@ -128,17 +128,18 @@ const StyledHeader = styled(Header)`
         padding: 0;
         z-index: 100;
         transition: transform 0.3s ease;
-        margin-left: 5px;
+        margin-left: 0;
 
         @media (max-width: 768px) {
             display: flex;
             position: absolute;
-            left: var(--space-4);
-            top: var(--space-3);
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         &:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) translateY(-50%);
         }
 
         span {
@@ -171,6 +172,7 @@ const StyledHeader = styled(Header)`
         display: flex;
         align-items: center;
         margin-left: auto;
+        order: 2;
 
         @media (max-width: 768px) {
             margin-left: auto;
@@ -180,26 +182,72 @@ const StyledHeader = styled(Header)`
 
     .nav-menu {
         flex: 0 1 auto;
+        order: 1;
 
         @media (max-width: 768px) {
-            flex: 0 0 100%;
-            max-height: 0;
-            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: -300px;
+            height: 100vh;
+            width: 300px;
+            background: ${({ theme }) => theme.color.contrastPrimary};
+            padding: 60px 20px 20px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: none;
+            z-index: 90;
             order: 4;
-            opacity: 0;
-            transform: translateY(-10px);
-            margin-top: var(--space-2);
 
             &.open {
-                max-height: 300px;
-                opacity: 1;
-                transform: translateY(0);
-                background: #2D2D2D;
-                border-radius: 7px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.1);
+                left: 0;
+                box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
+            }
+
+            /* Style adjustments for ButtonGroup in mobile nav */
+            > div {  /* ButtonGroup container */
+                flex-direction: column;
+                width: 100%;
+                background: none;
+                box-shadow: none;
+
+                > * {  /* Button wrappers */
+                    width: 100%;
+
+                    button {
+                        width: 100%;
+                        justify-content: flex-start;
+                        padding: 12px 16px;
+                        border-radius: 7px;
+                        margin-bottom: 8px;
+
+                        &:hover {
+                            background: #404040;
+                        }
+                    }
+                }
             }
         }
+    }
+
+    /* Add overlay when menu is open */
+    &:after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        pointer-events: none;
+        z-index: 80;
+    }
+
+    &.menu-open:after {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
     }
 
     .github-link {

@@ -1,117 +1,54 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
-import ExpandMore from '@mui/icons-material/ExpandMore';
+import { motion } from 'framer-motion';
 import styled from './styled';
 
-const StyledAccordion = styled(Accordion)`
+const StyledExperienceItem = styled(motion.div)`
     background-color: ${props => props.theme.color.contrastPrimary}95;
-    margin: 0 !important;
-    box-shadow: none;
-    border: none;
-    border-radius: 0 !important;
+    border: 1px solid ${props => props.theme.color.accent};
+    border-radius: ${props => props.theme.size.borderRadius.medium};
+    padding: 24px;
+    margin-bottom: 32px;
     position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     
-    &:before {
-        display: none;
+    @media (max-width: ${props => props.theme.size.mobile.breakpoint}) {
+        padding: 16px;
+        margin-bottom: 24px;
     }
 
-    &.Mui-expanded {
-        margin: 0 !important;
+    &:hover {
+        background-color: ${props => props.theme.color.contrastSecondary}95;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
     }
 
-    /* Main border */
     &:after {
         content: '';
         position: absolute;
-        top: 0;
         left: 0;
         right: 0;
-        bottom: 0;
-        border: 1px solid ${props => props.theme.color.accent};
-        border-bottom: none;
-        pointer-events: none;
-    }
-
-    &:first-of-type {
-        &:after {
-            border-top-left-radius: ${props => props.theme.size.borderRadius.medium};
-            border-top-right-radius: ${props => props.theme.size.borderRadius.medium};
-        }
-    }
-
-    &:last-of-type {
-        &:after {
-            border-bottom: 1px solid ${props => props.theme.color.accent};
-            border-bottom-left-radius: ${props => props.theme.size.borderRadius.medium};
-            border-bottom-right-radius: ${props => props.theme.size.borderRadius.medium};
-        }
-    }
-
-    & + & {
-        &:after {
-            border-top: none;
-        }
-    }
-
-    /* Inner dividers */
-    .MuiAccordionSummary-root {
-        &:before, &:after {
-            content: '';
-            position: absolute;
-            left: 1px;
-            right: 1px;
-            height: 1px;
-            background-color: ${props => props.theme.color.accent};
-            opacity: 0.5;
-            z-index: 1;
-        }
-
-        &:before {
-            top: 0;
-        }
-
-        &:after {
-            bottom: 0;
-        }
-
-        &.Mui-expanded:after {
-            display: none;
-        }
-    }
-`;
-
-const StyledSummary = styled(AccordionSummary)`
-    background-color: ${props => props.theme.color.contrastPrimary}95;
-    min-height: 56px !important;
-    transition: background-color 0.2s ease;
-    position: relative;
-    padding: 0 24px;
-    
-    &.Mui-expanded {
-        min-height: 56px !important;
-        background-color: ${props => props.theme.color.contrastSecondary}90;
-    }
-    
-    &:hover {
-        background-color: ${props => props.theme.color.contrastSecondary}95;
-    }
-
-    .MuiAccordionSummary-content {
-        margin: 12px 0 !important;
+        bottom: -16px;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent 0%,
+            ${props => props.theme.color.accent}40 50%,
+            transparent 100%
+        );
         
-        &.Mui-expanded {
-            margin: 12px 0 !important;
+        @media (max-width: ${props => props.theme.size.mobile.breakpoint}) {
+            bottom: -12px;
         }
     }
 
-    .MuiAccordionSummary-expandIconWrapper {
-        color: ${props => props.theme.color.accent};
-        transition: color 0.2s ease;
-        font-size: 1.5rem;
-
-        &.Mui-expanded {
-            color: ${props => props.theme.color.accent};
+    &:last-child {
+        margin-bottom: 0;
+        
+        &:after {
+            display: none;
         }
     }
 `;
@@ -122,71 +59,115 @@ const Title = styled('h2')`
     color: #ffffff;
     font-weight: 600;
     letter-spacing: 0.25px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:after {
+        content: '';
+        position: absolute;
+        left: -24px;
+        right: -24px;
+        bottom: 0;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            ${props => props.theme.color.accent}20 0%,
+            ${props => props.theme.color.accent}60 50%,
+            ${props => props.theme.color.accent}20 100%
+        );
+
+        @media (max-width: ${props => props.theme.size.mobile.breakpoint}) {
+            left: -16px;
+            right: -16px;
+        }
+    }
 `;
 
 const Period = styled('span')`
     color: ${props => props.theme.color.accent};
     font-size: 0.9rem;
-    margin-left: 12px;
     font-weight: 500;
-`;
-
-const StyledAccordionDetails = styled(AccordionDetails)`
-    padding: 24px;
-    background-color: ${props => props.theme.color.contrastSecondary}85;
-    line-height: 1.6;
-    position: relative;
-
-    &:after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background-color: ${props => props.theme.color.accent};
-        opacity: 0.7;
-    }
 `;
 
 const Description = styled('p')`
     color: #ffffff;
     line-height: 1.8;
     font-size: 0.95rem;
-    max-width: 800px;
     letter-spacing: 0.3px;
     margin: 0;
     padding: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    opacity: 0.9;
 
     @media (max-width: ${props => props.theme.size.mobile.breakpoint}) {
-        min-width: ${props => props.theme.size.mobile.minWidth};
-        max-width: ${props => props.theme.size.mobile.maxWidth};
-        width: ${props => props.theme.size.mobile.maxWidth};
+        min-width: unset;
+        max-width: 100%;
+        width: 100%;
     }
 `;
 
-const ExperienceItem = ({ company, period, description }) => (
-    <StyledAccordion>
-        <StyledSummary
-            expandIcon={<ExpandMore />}
-            aria-controls={`${company}-content`}
-            id={`${company}-header`}
+const ExperienceItem = ({ company, period, description, index }) => {
+    const [isVisible, setIsVisible] = React.useState(false);
+    const itemRef = React.useRef(null);
+
+    React.useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting);
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '50px'
+            }
+        );
+
+        if (itemRef.current) {
+            observer.observe(itemRef.current);
+        }
+
+        return () => {
+            if (itemRef.current) {
+                observer.unobserve(itemRef.current);
+            }
+        };
+    }, []);
+
+    return (
+        <StyledExperienceItem
+            ref={itemRef}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ 
+                opacity: isVisible ? 1 : 0,
+                y: isVisible ? 0 : 20
+            }}
+            transition={{ 
+                duration: 0.5,
+                ease: "easeOut",
+                delay: index * 0.1
+            }}
         >
             <Title>
                 {company}
                 <Period>{period}</Period>
             </Title>
-        </StyledSummary>
-        <StyledAccordionDetails>
             <Description>{description}</Description>
-        </StyledAccordionDetails>
-    </StyledAccordion>
-);
+        </StyledExperienceItem>
+    );
+};
 
 ExperienceItem.propTypes = {
     company: PropTypes.string.isRequired,
     period: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired
+    description: PropTypes.string.isRequired,
+    index: PropTypes.number
 };
 
 export default ExperienceItem; 
