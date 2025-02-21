@@ -33,7 +33,6 @@ const StyledButtonGroup = styled(ButtonGroup)`
         gap: 0;
         border-radius: 7px;
         background: #2D2D2D;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.1);
     }
 
     > * {

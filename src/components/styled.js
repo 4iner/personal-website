@@ -33,6 +33,12 @@ const defaultThemeObj = {
             small: '4px',
             medium: '8px',
             large: '12px'
+        },
+        mobile: {
+            minWidth: '280px',
+            maxWidth: '100%',
+            contentMaxWidth: 'calc(100% - 48px)', // 48px accounts for 24px margin on each side
+            breakpoint: '768px'
         }
     },
 };

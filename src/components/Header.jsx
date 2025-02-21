@@ -22,6 +22,14 @@ const Header = ({ siteTitle, className }) => {
 
     return (
         <header className={`${className} ${isScrolled ? 'scrolled' : ''}`}>
+            <button 
+                className={`menu-toggle ${isMenuOpen ? 'open' : ''}`}
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div className="header-content">
                 <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
                     <ButtonGroup>
@@ -49,15 +57,6 @@ const Header = ({ siteTitle, className }) => {
                         </div>
                     </Link>
                 </div>
-
-                <button 
-                    className={`menu-toggle ${isMenuOpen ? 'open' : ''}`}
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
             </div>
         </header>
     );
@@ -86,6 +85,10 @@ const StyledHeader = styled(Header)`
     transition: all 0.3s ease;
     backdrop-filter: blur(8px);
 
+    @media (max-width: 768px) {
+        position: sticky;
+    }
+
     &.scrolled {
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
         background-image: linear-gradient(
@@ -98,26 +101,18 @@ const StyledHeader = styled(Header)`
     .header-content {
         max-width: var(--size-content);
         margin: 0 auto;
-        padding: var(--space-3) var(--size-gutter);
+        padding: var(--space-3) 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: var(--space-4);
         position: relative;
 
-        @media (max-width: 768px) {
+        @media (max-width: ${props => props.theme.size.mobile.breakpoint}) {
             flex-wrap: wrap;
-            padding: var(--space-3) var(--space-4);
-        }
-    }
-
-    .right-section {
-        display: flex;
-        align-items: center;
-        margin-left: auto;
-
-        @media (max-width: 768px) {
-            margin-left: 0;
+            padding: var(--space-3) 0;
+            margin-left: var(--space-4);
+            margin-right: var(--space-4);
         }
     }
 
@@ -133,6 +128,14 @@ const StyledHeader = styled(Header)`
         padding: 0;
         z-index: 100;
         transition: transform 0.3s ease;
+        margin-left: 5px;
+
+        @media (max-width: 768px) {
+            display: flex;
+            position: absolute;
+            left: var(--space-4);
+            top: var(--space-3);
+        }
 
         &:hover {
             transform: scale(1.1);
@@ -162,10 +165,16 @@ const StyledHeader = styled(Header)`
                 }
             }
         }
+    }
+
+    .right-section {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
 
         @media (max-width: 768px) {
-            display: flex;
-            order: -1;
+            margin-left: auto;
+            padding-left: 44px;
         }
     }
 
@@ -186,6 +195,9 @@ const StyledHeader = styled(Header)`
                 max-height: 300px;
                 opacity: 1;
                 transform: translateY(0);
+                background: #2D2D2D;
+                border-radius: 7px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.1);
             }
         }
     }

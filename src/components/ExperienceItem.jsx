@@ -157,6 +157,12 @@ const Description = styled('p')`
     letter-spacing: 0.3px;
     margin: 0;
     padding: 0;
+
+    @media (max-width: ${props => props.theme.size.mobile.breakpoint}) {
+        min-width: ${props => props.theme.size.mobile.minWidth};
+        max-width: ${props => props.theme.size.mobile.maxWidth};
+        width: ${props => props.theme.size.mobile.maxWidth};
+    }
 `;
 
 const ExperienceItem = ({ company, period, description }) => (
