@@ -21,11 +21,21 @@ const StyledLayout = styled('div')`
         margin: 0 auto;
         max-width: var(--size-content);
         padding: var(--size-gutter);
+        padding-left: calc(var(--size-gutter) + 1px);
         background: #333333;
-        border-radius: 8px;
+        border-radius: 7px;
         margin-top: 20px;
-        border: 1px solid #4A4A4A;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+
+        @media (max-width: ${props => props.theme.size.mobile.breakpoint}) {
+            padding: var(--space-4);
+            margin-left: var(--space-4);
+            margin-right: var(--space-4);
+            min-width: ${props => props.theme.size.mobile.minWidth};
+            max-width: ${props => props.theme.size.mobile.contentMaxWidth};
+            width: ${props => props.theme.size.mobile.maxWidth};
+        }
     }
 
     footer {
