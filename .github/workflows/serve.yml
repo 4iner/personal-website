@@ -40,5 +40,7 @@ jobs:
         with:
           distribution-id: ${{ secrets.CFDistributionId }}
           aws-region: 'us-east-1'
+          origin-prefix: ''
+          include-origin-prefix: false
           invalidate-paths: '/*'
           default-root-object: 'index.html'
