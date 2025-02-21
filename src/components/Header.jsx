@@ -19,7 +19,7 @@ const Header = ({ siteTitle, className }) => (
                 fontSize: `var(--font-sm)`,
                 textDecoration: `none`,
             }}>
-            <Button title="Home" />
+            <Button title="Homes" />
         </Link>
         <ButtonGroup
             style={{
