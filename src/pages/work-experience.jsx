@@ -3,11 +3,16 @@ import Layout from '../components/Layout';
 import Seo from '../components/seo';
 import ExperienceItem from '../components/ExperienceItem';
 import styled from '../components/styled';
+import { motion } from 'framer-motion';
 
 const ExperienceContainer = styled('div')`
     max-width: 800px;
     margin: 0 auto;
     padding: 40px 24px;
+
+    @media (max-width: ${props => props.theme.size.mobile.breakpoint}) {
+        padding: 24px 16px;
+    }
 `;
 
 const Title = styled('h1')`
@@ -15,7 +20,24 @@ const Title = styled('h1')`
     margin-bottom: 32px;
     font-size: 2rem;
     letter-spacing: 0.5px;
+    text-align: center;
 `;
+
+const ExperienceList = styled(motion.div)`
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+`;
+
+const container = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1
+        }
+    }
+};
 
 const experiences = [
     {
@@ -45,12 +67,21 @@ const WorkExperiencePage = () => (
         <Seo title="Work Experience" />
         <ExperienceContainer>
             <Title>Work Experience</Title>
-            {experiences.map((experience, index) => (
-                <ExperienceItem
-                    key={`experience-${experience.company.toLowerCase()}`}
-                    {...experience}
-                />
-            ))}
+            <ExperienceList
+                variants={container}
+                initial="hidden"
+                animate="show"
+            >
+                {experiences.map((experience, index) => (
+                    <ExperienceItem
+                        key={index}
+                        index={index}
+                        company={experience.company}
+                        period={experience.period}
+                        description={experience.description}
+                    />
+                ))}
+            </ExperienceList>
         </ExperienceContainer>
     </Layout>
 );
