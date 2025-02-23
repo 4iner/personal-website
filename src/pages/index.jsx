@@ -5,6 +5,40 @@ import Layout from '../components/Layout';
 import Seo from '../components/seo';
 import styled from '../components/styled';
 
+// Memoize sections data to prevent recreation
+const SECTIONS = [
+    {
+        title: "Projects Showcase 🚀",
+        description: "Dive into my portfolio of projects! From web applications to creative experiments, discover the solutions I've built. Each project comes with its own story and technical journey.",
+        link: "/projects",
+        emoji: "🚀"
+    },
+    {
+        title: "Professional Journey 💼",
+        description: "Explore my career path and professional experiences. See how I've grown as a developer and the impact I've made in different roles.",
+        link: "/work-experience",
+        emoji: "💼"
+    },
+    {
+        title: "Technical Skills 🛠",
+        description: "Check out my technical toolkit! An interactive showcase of the technologies and skills I've mastered. Play with the 3D carousel to explore different technologies.",
+        link: "/skills",
+        emoji: "🛠"
+    }
+];
+
+// CSS classes instead of dynamic styled-components
+const staticStyles = {
+    exploring: {
+        minHeight: 'auto',
+        padding: '0',
+    },
+    default: {
+        minHeight: '100%',
+        padding: '20px',
+    }
+};
+
 const PageContainer = styled(motion.div)`
     min-height: ${props => props.isExploring ? 'auto' : '100%'};
     position: relative;
@@ -135,174 +169,104 @@ const StartButton = styled(motion.button)`
     }
 `;
 
-const ProgressBar = styled(motion.div)`
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: ${props => props.theme.color.accent}40;
-    transform-origin: 0%;
-    z-index: 1000;
-`;
-
 const IndexPage = () => {
     const [isExploring, setIsExploring] = React.useState(false);
-    const [scrollProgress, setScrollProgress] = React.useState(0);
 
-    React.useEffect(() => {
-        const handleScroll = () => {
-            const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = window.scrollY / totalScroll;
-            setScrollProgress(progress);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    const sections = [
-        {
-            title: "Projects Showcase 🚀",
-            description: "Dive into my portfolio of projects! From web applications to creative experiments, discover the solutions I've built. Each project comes with its own story and technical journey.",
-            link: "/projects",
-            emoji: "🚀"
+    // Memoize all animation variants
+    const variants = React.useMemo(() => ({
+        page: {
+            initial: { opacity: 1 },
+            animate: { opacity: 1 },
+            exit: { opacity: 0, transition: { duration: 0.6, ease: "easeInOut" } }
         },
-        {
-            title: "Professional Journey 💼",
-            description: "Explore my career path and professional experiences. See how I've grown as a developer and the impact I've made in different roles.",
-            link: "/work-experience",
-            emoji: "💼"
-        },
-        {
-            title: "Technical Skills 🛠",
-            description: "Check out my technical toolkit! An interactive showcase of the technologies and skills I've mastered. Play with the 3D carousel to explore different technologies.",
-            link: "/skills",
-            emoji: "🛠"
-        }
-    ];
-
-    const pageVariants = {
-        initial: { opacity: 1 },
-        animate: { opacity: 1 },
-        exit: { opacity: 0, transition: { duration: 0.6, ease: "easeInOut" } }
-    };
-
-    const heroVariants = {
-        initial: { height: "calc(100vh - var(--header-height))" },
-        animate: { 
-            height: isExploring ? "80px" : "calc(100vh - var(--header-height))",
-            transition: { 
-                duration: 1,
-                ease: [0.4, 0, 0.2, 1]
-            }
-        }
-    };
-
-    const titleVariants = {
-        initial: { scale: 1 },
-        animate: { 
-            scale: isExploring ? 0.98 : 1,
-            transition: { 
-                duration: 0.8,
-                ease: [0.4, 0, 0.2, 1]
-            }
-        }
-    };
-
-    const buttonVariants = {
-        initial: { opacity: 0, y: 10 },
-        animate: { 
-            opacity: 1, 
-            y: 0,
-            transition: {
-                duration: 0.6,
-                ease: [0.4, 0, 0.2, 1]
+        hero: {
+            initial: { height: "calc(100vh - var(--header-height))" },
+            animate: { 
+                height: isExploring ? "80px" : "calc(100vh - var(--header-height))",
+                transition: { duration: 1, ease: [0.4, 0, 0.2, 1] }
             }
         },
-        exit: { 
-            opacity: 0,
-            scale: 0.98,
-            transition: { 
-                duration: 0.5,
-                ease: [0.4, 0, 0.2, 1]
-            }
-        }
-    };
-
-    const sectionVariants = {
-        initial: { opacity: 0, y: 20 },
-        animate: { 
-            opacity: 1, 
-            y: 0,
-            transition: {
-                duration: 0.6,
-                ease: [0.4, 0, 0.2, 1],
-                staggerChildren: 0.08,
-                delayChildren: 0.3
+        title: {
+            initial: { scale: 1 },
+            animate: { 
+                scale: isExploring ? 0.98 : 1,
+                transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] }
             }
         },
-        exit: { 
-            opacity: 0, 
-            y: -10,
-            transition: {
-                duration: 0.5,
-                ease: [0.4, 0, 0.2, 1]
+        button: {
+            initial: { opacity: 0, y: 10 },
+            animate: { 
+                opacity: 1, 
+                y: 0,
+                transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
+            },
+            exit: { 
+                opacity: 0,
+                scale: 0.98,
+                transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+            }
+        },
+        section: {
+            initial: { opacity: 0, y: 20 },
+            animate: { 
+                opacity: 1, 
+                y: 0,
+                transition: {
+                    duration: 0.6,
+                    ease: [0.4, 0, 0.2, 1],
+                    staggerChildren: 0.08,
+                    delayChildren: 0.3
+                }
+            },
+            exit: { 
+                opacity: 0, 
+                y: -10,
+                transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+            }
+        },
+        card: {
+            initial: { opacity: 0, y: 15 },
+            animate: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
             }
         }
-    };
+    }), [isExploring]);
 
-    const cardVariants = {
-        initial: { opacity: 0, y: 15 },
-        animate: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.5,
-                ease: [0.4, 0, 0.2, 1]
-            }
-        }
-    };
-
-    const handleExplore = () => {
+    const handleExplore = React.useCallback(() => {
         setIsExploring(true);
-    };
+    }, []);
 
     return (
         <Layout>
             <Seo title="Home" />
-            <ProgressBar
-                style={{ scaleX: scrollProgress }}
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: scrollProgress }}
-                transition={{ type: "spring", stiffness: 100 }}
-            />
             <PageContainer
                 isExploring={isExploring}
-                variants={pageVariants}
+                variants={variants.page}
                 initial="initial"
                 animate="animate"
                 exit="exit"
             >
                 <HeroSection
                     isExploring={isExploring}
-                    variants={heroVariants}
+                    variants={variants.hero}
                     initial="initial"
                     animate="animate"
                 >
                     <Title
                         isExploring={isExploring}
-                        variants={titleVariants}
+                        variants={variants.title}
                         initial="initial"
                         animate="animate"
                         layout
                     >
-                        Welcome to Mustafa Ameen's Digital Space
+                        Welcome to My Digital Space
                     </Title>
                     <AnimatePresence>
                         {!isExploring && (
                             <StartButton
-                                variants={buttonVariants}
+                                variants={variants.button}
                                 initial="initial"
                                 animate="animate"
                                 exit="exit"
@@ -320,26 +284,20 @@ const IndexPage = () => {
                     {isExploring && (
                         <InteractiveSection
                             isExploring={isExploring}
-                            variants={sectionVariants}
+                            variants={variants.section}
                             initial="initial"
                             animate="animate"
                             exit="exit"
                         >
-                            {sections.map((section, index) => (
-                                <Link to={section.link} key={index} style={{ textDecoration: 'none' }}>
+                            {SECTIONS.map((section, index) => (
+                                <Link to={section.link} key={section.link} style={{ textDecoration: 'none' }}>
                                     <Card
                                         isFirst={index === 0}
-                                        variants={cardVariants}
+                                        variants={variants.card}
                                         whileHover={{ scale: 1.01 }}
                                         whileTap={{ scale: 0.99 }}
                                     >
-                                        <Emoji
-                                            initial={{ rotate: 0 }}
-                                            whileHover={{ rotate: [0, -10, 10, 0] }}
-                                            transition={{ duration: 0.5 }}
-                                        >
-                                            {section.emoji}
-                                        </Emoji>
+                                        <Emoji>{section.emoji}</Emoji>
                                         <h2>{section.title}</h2>
                                         <p>{section.description}</p>
                                     </Card>
@@ -353,4 +311,4 @@ const IndexPage = () => {
     );
 };
 
-export default IndexPage;
+export default React.memo(IndexPage);
