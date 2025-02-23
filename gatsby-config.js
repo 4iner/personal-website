@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Mustafa Ameen`,
-    description: `Personal website and portfolio showcasing my work and experience in software development.`,
+    description: `Mustafa Ameen's personal website and portfolio showcasing my work and experience in software development.`,
     author: `@4iner`,
     siteUrl: `https://mufasa.ca/`,
   },
