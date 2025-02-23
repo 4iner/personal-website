@@ -15,7 +15,6 @@
     "@types/three": "^0.170.0",
     "babel-plugin-styled-components": "2.1.4",
     "babel-polyfill": "^6.26.0",
-    "framer-motion": "10.16.16",
     "gatsby": "^5.13.3",
     "gatsby-plugin-gatsby-cloud": "^5.13.0",
     "gatsby-plugin-image": "^3.13.0",

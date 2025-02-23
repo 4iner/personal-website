@@ -45,12 +45,12 @@ const SocialButton = styled('a')`
     height: 36px;
     border-radius: 50%;
     color: ${props => props.theme.color.textLight};
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
     svg {
         width: 20px;
         height: 20px;
-        transition: transform 0.2s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     &:hover {
@@ -100,7 +100,7 @@ const DownloadHint = styled('span')`
     border: 1px solid ${props => props.theme.color.accent}40;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     opacity: ${props => props.show ? 1 : 0};
-    transition: opacity 0.3s ease;
+    transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 
     &:before, &:after {
         content: '';
