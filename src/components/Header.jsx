@@ -222,7 +222,7 @@ const Header = ({ siteTitle, className }) => {
                         <Button to="/projects" title="Projects" />
                         <Button to="/work-experience" title="Work Experience" />
                         <Button to="/skills" title="Skills" />
-                        <Button title="About me" />
+                        <Button to="/about" title="About me" />
                     </ButtonGroup>
                 </nav>
             </div>

@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Mustafa Ameen`,
-    description: `A website-portfolio made by Mustafa Ameen.`,
+    description: `Personal website and portfolio showcasing my work and experience in software development.`,
     author: `@4iner`,
     siteUrl: `https://mufasa.ca/`,
   },
@@ -20,21 +20,27 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Mustafa Ameen - Portfolio`,
+        short_name: `Portfolio`,
         start_url: `/`,
-        background_color: `#663399`,
-        // This will impact how browsers show your PWA/website
-        // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: `#663399`,
+        background_color: `#1a1a1a`,
+        theme_color: `#8A2BE2`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `static/favicon.svg`,
+        icon_options: {
+          purpose: `any maskable`,
+        },
+        cache_busting_mode: 'none',
       },
-      
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      resolve: 'gatsby-plugin-offline',
+      options: {
+        workboxConfig: {
+          globPatterns: ['**/*'],
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-s3`,
       options: {
