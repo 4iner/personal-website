@@ -10,27 +10,57 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from './styled';
 import Header from './Header';
-import ParticleField from './ParticleField';
 import './layout.css';
 
 const StyledLayout = styled('div')`
-    background: #2D2D2D;
     min-height: 100vh;
-    color: white;
     position: relative;
+    background: #2D2D2D;
+    
+    /* Remove unnecessary 3D transforms that can cause jank */
+    transform: translate3d(0, 0, 0);
+    
+    &::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #2D2D2D;
+        z-index: -2;
+    }
+
+    /* Optimize the gradient animation */
+    &::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 50% 50%,
+            ${props => props.theme.color.accent}10 0%,
+            transparent 70%
+        );
+        opacity: 0.5;
+        z-index: -1;
+        pointer-events: none;
+        /* Reduce animation complexity */
+        animation: none; /* Remove the pulse animation for better performance */
+    }
 
     .content-wrapper {
         margin: 0 auto;
         max-width: var(--size-content);
-        background: #333333;
         border-radius: 7px;
-        margin-top: 20px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
+        margin: 20px auto;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         position: relative;
         z-index: 1;
-        backdrop-filter: blur(5px);
-        background: ${props => props.theme.color.contrastPrimary}95;
+        /* Remove blur filter which can cause performance issues */
+        background: ${props => props.theme.color.contrastPrimary};
 
         @media (max-width: ${props => props.theme.size.mobile.breakpoint}) {
             margin-left: var(--space-4);
@@ -51,6 +81,15 @@ const StyledLayout = styled('div')`
     }
 `;
 
+const Main = styled('main')`
+    padding-top: var(--header-height);
+    min-height: calc(100vh - var(--header-height));
+    position: relative;
+    z-index: 1;
+    /* Simplify transform */
+    transform: translate3d(0, 0, 0);
+`;
+
 const Layout = ({ children }) => {
     const data = useStaticQuery(graphql`
         query SiteTitleQuery {
@@ -64,10 +103,9 @@ const Layout = ({ children }) => {
 
     return (
         <StyledLayout>
-            <ParticleField />
             <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
             <div className="content-wrapper">
-                <main>{children}</main>
+                <Main>{children}</Main>
                 <footer></footer>
             </div>
         </StyledLayout>
@@ -78,4 +116,4 @@ Layout.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-export default Layout;
+export default React.memo(Layout); // Memoize the Layout component

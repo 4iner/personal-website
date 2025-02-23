@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { motion } from 'framer-motion';
 import styled from './styled';
 
-const StyledProjectItem = styled(motion.div)`
+const StyledProjectItem = styled('div')`
     background-color: ${props => props.theme.color.contrastPrimary}95;
     border: 1px solid ${props => props.theme.color.accent};
     border-radius: ${props => props.theme.size.borderRadius.medium};
@@ -10,6 +9,14 @@ const StyledProjectItem = styled(motion.div)`
     margin-bottom: 20px;
     position: relative;
     overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
     
     @media (max-width: ${props => props.theme.size.mobile.breakpoint}) {
         padding: 16px;
@@ -17,6 +24,7 @@ const StyledProjectItem = styled(motion.div)`
 
     &:hover {
         background-color: ${props => props.theme.color.contrastSecondary}95;
+        transform: translateY(-2px);
     }
 `;
 
@@ -72,50 +80,49 @@ const Description = styled('p')`
     }
 `;
 
+// Shared IntersectionObserver instance
+const observer = typeof window !== 'undefined' ? 
+    new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.1,
+            rootMargin: '50px'
+        }
+    ) : null;
+
 const ProjectItem = ({ title, description, index }) => {
-    const [isVisible, setIsVisible] = React.useState(false);
     const itemRef = React.useRef(null);
 
     React.useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                setIsVisible(entry.isIntersecting);
-            },
-            {
-                threshold: 0.1,
-                rootMargin: '50px'
-            }
-        );
-
-        if (itemRef.current) {
-            observer.observe(itemRef.current);
+        const currentItem = itemRef.current;
+        
+        if (observer && currentItem) {
+            observer.observe(currentItem);
+            
+            // Add delay based on index
+            currentItem.style.transitionDelay = `${index * 0.1}s`;
         }
 
         return () => {
-            if (itemRef.current) {
-                observer.unobserve(itemRef.current);
+            if (observer && currentItem) {
+                observer.unobserve(currentItem);
             }
         };
-    }, []);
+    }, [index]);
 
     return (
-        <StyledProjectItem
-            ref={itemRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ 
-                opacity: isVisible ? 1 : 0,
-                y: isVisible ? 0 : 20
-            }}
-            transition={{ 
-                duration: 0.5,
-                ease: "easeOut",
-                delay: index * 0.2 // Stagger the animation based on index
-            }}
-        >
+        <StyledProjectItem ref={itemRef}>
             <Title>{title}</Title>
             <Description>{description}</Description>
         </StyledProjectItem>
     );
 };
 
-export default ProjectItem; 
+export default React.memo(ProjectItem); 
