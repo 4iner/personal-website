@@ -199,7 +199,7 @@ const Header = ({ siteTitle, className }) => {
                             </HintContainer>
                         </SocialButton>
                         <SocialButton
-                            href="https://github.com/yourusername"
+                            href="https://github.com/4iner"
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Visit my GitHub profile"
@@ -207,7 +207,7 @@ const Header = ({ siteTitle, className }) => {
                             <GitHubIcon />
                         </SocialButton>
                         <SocialButton
-                            href="https://linkedin.com/in/yourusername"
+                            href="https://linkedin.com/in/mustafer"
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Connect with me on LinkedIn"
