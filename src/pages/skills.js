@@ -7,12 +7,58 @@ import Layout from '../components/Layout';
 import SkillCard from '../components/SkillCard';
 
 const skills = [
-    { name: 'Java', description: 'Enterprise development with Spring Boot and Android apps.' },
-    { name: 'React', description: 'Frontend development with React and React Native.' },
-    { name: 'Python', description: 'Data science, automation, and backend development.' },
-    { name: 'GraphQL', description: 'API development and integration.' },
-    { name: 'PostgreSQL', description: 'Database design and optimization.' },
-    { name: 'C#', description: '.NET development and Unity game programming.' },
+    { 
+        name: 'Java', 
+        description: `<ul style="margin: 0; padding-left: 20px; list-style-type: disc; line-height: 1.6;">
+<li style="margin-bottom: 8px">Enterprise development with Spring Boot and GraphQL APIs</li>
+<li style="margin-bottom: 8px">Built data archiving solutions and customer management systems</li>
+<li style="margin-bottom: 8px">Developed secure, high-performance backend services</li>
+<li>Experience with microservices architecture and integration pipelines</li>
+</ul>`
+    },
+    { 
+        name: 'React', 
+        description: `<ul style="margin: 0; padding-left: 20px; list-style-type: disc; line-height: 1.6;">
+<li style="margin-bottom: 8px">Frontend development with React and Redux</li>
+<li style="margin-bottom: 8px">Built real-time dashboards and modern user interfaces</li>
+<li style="margin-bottom: 8px">Complex state management for enterprise applications</li>
+<li>Implemented responsive designs and interactive features</li>
+</ul>`
+    },
+    { 
+        name: 'Python', 
+        description: `<ul style="margin: 0; padding-left: 20px; list-style-type: disc; line-height: 1.6;">
+<li style="margin-bottom: 8px">Created automated testing frameworks and CLI tools</li>
+<li style="margin-bottom: 8px">Developed integration tests and data processing pipelines</li>
+</ul>`
+    },
+    { 
+        name: 'Cloud & DevOps', 
+        description: `<ul style="margin: 0; padding-left: 20px; list-style-type: disc; line-height: 1.6;">
+<li style="margin-bottom: 8px">AWS infrastructure management and deployment</li>
+<li style="margin-bottom: 8px">Kubernetes orchestration and Helm chart development</li>
+<li style="margin-bottom: 8px">Implemented backup and recovery procedures</li>
+<li>High availability system design and maintenance</li>
+</ul>`
+    },
+    { 
+        name: 'C# & .NET', 
+        description: `<ul style="margin: 0; padding-left: 20px; list-style-type: disc; line-height: 1.6;">
+<li style="margin-bottom: 8px">Full-stack development with ASP.NET Core</li>
+<li style="margin-bottom: 8px">Built WPF applications using MVVM pattern</li>
+<li style="margin-bottom: 8px">Developed real-time log viewing systems</li>
+<li>Improved a record linkage software with additional features and bug fixes</li>
+</ul>`
+    },
+    { 
+        name: 'Integration', 
+        description: `<ul style="margin: 0; padding-left: 20px; list-style-type: disc; line-height: 1.6;">
+<li style="margin-bottom: 8px">HR system integrations and iPaaS solutions</li>
+<li style="margin-bottom: 8px">Experience with ADP, Oracle HCM, and BambooHR</li>
+<li style="margin-bottom: 8px">Apache NiFi and data pipeline development</li>
+<li>Groovy scripting and real-time data synchronization</li>
+</ul>`
+    }
 ];
 
 function Carousel() {
@@ -235,26 +281,37 @@ function Carousel() {
                         borderRadius: '8px',
                         color: 'white',
                         width: '300px',
-                        textAlign: 'center',
+                        textAlign: 'left',
+                        fontSize: '14px',
+                        lineHeight: '1.5'
                     }}>
-                        <h3 style={{ margin: '0 0 10px 0' }}>{activeSkill.name}</h3>
-                        <p style={{ margin: '0' }}>{activeSkill.description}</p>
-                        <button 
-                            onClick={() => {
-                                setActiveSkill(null);
-                                setActiveIndex(null);
-                            }}
-                            style={{
-                                background: 'white',
-                                border: 'none',
-                                padding: '5px 15px',
-                                borderRadius: '4px',
-                                marginTop: '10px',
-                                cursor: 'pointer'
-                            }}
-                        >
-                            Close
-                        </button>
+                        <h3 style={{ 
+                            margin: '0 0 15px 0',
+                            textAlign: 'center',
+                            fontSize: '18px',
+                            color: '#fff'
+                        }}>{activeSkill.name}</h3>
+                        <div 
+                            style={{ margin: '0' }}
+                            dangerouslySetInnerHTML={{ __html: activeSkill.description }}
+                        />
+                        <div style={{ textAlign: 'center', marginTop: '15px' }}>
+                            <button 
+                                onClick={() => {
+                                    setActiveSkill(null);
+                                    setActiveIndex(null);
+                                }}
+                                style={{
+                                    background: 'white',
+                                    border: 'none',
+                                    padding: '5px 15px',
+                                    borderRadius: '4px',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                Close
+                            </button>
+                        </div>
                     </div>
                 </Html>
             )}
@@ -264,25 +321,51 @@ function Carousel() {
 
 const SkillsPage = () => (
     <Layout>
+        <div style={{
+            width: '100%',
+            maxWidth: '800px',
+            margin: '0 auto',
+            padding: '20px 20px 0',
+            textAlign: 'center',
+            color: '#fff'
+        }}>
+            <h1 style={{
+                fontSize: '2rem',
+                marginBottom: '1rem',
+                background: 'linear-gradient(120deg, #8A2BE2, #ffffff)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+            }}>
+                Technical Skills
+            </h1>
+            <p style={{
+                fontSize: '1rem',
+                lineHeight: '1.6',
+                marginBottom: '0.5rem',
+                opacity: '0.9'
+            }}>
+                Explore my technical skills by interacting with the carousel below. Click and drag to rotate the wheel, or tap on any skill card to view detailed information about my experience. The carousel auto-rotates when idle, making it easy to browse through all skills.
+            </p>
+        </div>
         <div style={{ 
-            width: '100%',            // Changed from 100vw to 100%
-            height: '70vh',
+            width: '100%',
+            height: '45vh',
             margin: '0 auto',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             position: 'relative',
-            overflow: 'hidden',       // Added to prevent overflow
+            overflow: 'hidden',
             background: 'transparent'
         }}>
             <Canvas 
                 camera={{ 
-                    position: [0, 2, 13.5],
-                    fov: 45,
+                    position: [0, 1, 9.25],
+                    fov: 42.5,
                 }}
                 style={{
-                    width: '100%',    // Added to ensure canvas fits container
-                    height: '100%',   // Added to ensure canvas fits container
+                    width: '100%',
+                    height: '100%',
                 }}
                 gl={{ alpha: true }}
             >

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '../components/styled';
 import Layout from '../components/Layout';
 import Seo from '../components/seo';
+import ContactForm from '../components/ContactForm';
 
 const AboutContainer = styled('div')`
   max-width: var(--size-content);
@@ -266,6 +267,8 @@ const AboutPage = () => {
             </p>
           </InfoCard>
         </ContentSection>
+
+        <ContactForm />
       </AboutContainer>
     </Layout>
   );

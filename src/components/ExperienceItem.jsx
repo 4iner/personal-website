@@ -77,11 +77,25 @@ const Period = styled('span')`
     font-weight: normal;
 `;
 
-const Description = styled('p')`
+const Description = styled('div')`
     color: ${props => props.theme.color.textLight};
     line-height: 1.8;
     margin: 0;
     opacity: 0.9;
+
+    ul {
+        list-style-type: disc;
+        padding-left: 1.5rem;
+        margin: 1rem 0;
+    }
+
+    li {
+        margin-bottom: 0.75rem;
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 `;
 
 // Shared IntersectionObserver instance
@@ -127,7 +141,7 @@ const ExperienceItem = ({ company, period, description, index }) => {
                 {company}
                 <Period>{period}</Period>
             </Title>
-            <Description>{description}</Description>
+            <Description dangerouslySetInnerHTML={{ __html: description }} />
         </StyledExperienceItem>
     );
 };
