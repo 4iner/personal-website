@@ -59,7 +59,18 @@ const Title = styled('h2')`
     }
 `;
 
-const Description = styled('p')`
+const StyledLink = styled('a')`
+    color: ${props => props.theme.color.accent};
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: ${props => props.theme.color.textLight};
+        text-decoration: underline;
+    }
+`;
+
+const Description = styled('div')`
     color: #ffffff;
     line-height: 1.8;
     font-size: 0.95rem;
@@ -117,10 +128,20 @@ const ProjectItem = ({ title, description, index }) => {
         };
     }, [index]);
 
+    const formatDescription = (text) => {
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+        return text.split(urlRegex).map((part, i) => {
+            if (part.match(urlRegex)) {
+                return <StyledLink key={i} href={part} target="_blank" rel="noopener noreferrer">{part}</StyledLink>;
+            }
+            return part;
+        });
+    };
+
     return (
         <StyledProjectItem ref={itemRef}>
             <Title>{title}</Title>
-            <Description>{description}</Description>
+            <Description>{formatDescription(description)}</Description>
         </StyledProjectItem>
     );
 };
