@@ -5,6 +5,15 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Text, OrbitControls, Html } from '@react-three/drei';
 import Layout from '../components/Layout';
 import SkillCard from '../components/SkillCard';
+import styled from '../components/styled';
+
+const PageTitle = styled('h1')`
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(120deg, ${props => props.theme.color.accent}, ${props => props.theme.color.textLight});
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+`;
 
 const skills = [
     { 
@@ -329,15 +338,7 @@ const SkillsPage = () => (
             textAlign: 'center',
             color: '#fff'
         }}>
-            <h1 style={{
-                fontSize: '2rem',
-                marginBottom: '1rem',
-                background: 'linear-gradient(120deg, #8A2BE2, #ffffff)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-            }}>
-                Technical Skills
-            </h1>
+            <PageTitle>Technical Skills</PageTitle>
             <p style={{
                 fontSize: '1rem',
                 lineHeight: '1.6',

@@ -36,15 +36,15 @@ const ProjectsPage = () => {
         },
         {
             title: 'Clinic CRM',
-            description: 'A freelance project made during the 2020 COVID pandemic. React, Spring-Boot Java, and SQL. A wonderful combination that is simple, quick, and efficient to set up. Hosted entirely on AWS, it is ensured to always be up when the user required it. Static S3 website hosting and JWT security for a low-cost, highly-available secure application.'
+            description: 'A freelance project made during the 2020 COVID pandemic using React, Spring-Boot Java, and SQL. This combination provides a simple, quick, and efficient setup. The application is hosted entirely on AWS to ensure high availability when users need it.\n\nFeatures include static S3 website hosting and JWT security for a low-cost, highly-available secure application. You can try the demo at https://clinic-app.mufasa.ca using:\n\nUsername: "Demo"\nPassword: "ClinicAppDemo"\n\nNote: Please allow 1-2 minutes after clicking sign in, as the backend instance needs to start up. If you encounter an error, please try again or contact me through the "About me" section.'
         },
         {
             title: 'CrossPath',
-            description: "A windows application game, created with the Processing IDE. This game was inspired by Linedoku's CrossPath, where you have to expand nodes on a grid orthogonally by the number indicated on them. This was purely for fun, as it was developed on a 12-hour roadtrip."
+            description: "A windows application game, created with the Processing IDE. This game was inspired by Linedoku's CrossPath, where you have to expand nodes on a grid orthogonally by the number indicated on them. This was purely for fun, as it was developed on a 12-hour roadtrip. You can download and try the game at https://github.com/4iner/CrossPath/releases/tag/initial"
         },
         {
             title: 'GUI Chess',
-            description: "One of Carleton's assignments was to program a text-based Chess for one of our classes. I was bored after completing it, so I decided to go a step further and use the implementation of the logic and the classes to make it visual, with the Swing Java library."
+            description: "One of Carleton's assignments was to program a text-based Chess for one of our classes. I was bored after completing it, so I decided to go a step further and use the implementation of the logic and the classes to make it visual, with the Swing Java library. You can download and try the game at https://github.com/4iner/GUI-Chess/releases/tag/initial"
         }
     ], []);
 
