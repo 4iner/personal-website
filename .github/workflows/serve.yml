@@ -24,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Install Gatsby CLI
-        run: npm install -g gatsby-cli@5.16.1
+        run: npm install -g gatsby-cli@5.16.0
 
       - name: Build
         run: NODE_OPTIONS=--max_old_space_size=8192 gatsby build
