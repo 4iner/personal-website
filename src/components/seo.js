@@ -2,7 +2,7 @@ import * as React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-function Seo({ description, title, children }) {
+function Seo({ description = ``, title, children }) {
   const { site } = useStaticQuery(graphql`
     query {
       site {
@@ -32,10 +32,6 @@ function Seo({ description, title, children }) {
       {children}
     </>
   )
-}
-
-Seo.defaultProps = {
-  description: ``,
 }
 
 Seo.propTypes = {

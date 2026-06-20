@@ -8,12 +8,8 @@ const ButtonGroup = ({ children, className }) => {
 };
 
 ButtonGroup.propTypes = {
-    children: PropTypes.arrayOf(Button),
+    children: PropTypes.node,
     className: PropTypes.string,
-};
-
-ButtonGroup.defaultProps = {
-    siteTitle: ``,
 };
 
 const StyledButtonGroup = styled(ButtonGroup)`
@@ -39,7 +35,7 @@ const StyledButtonGroup = styled(ButtonGroup)`
         position: relative;
 
         @media (min-width: ${props => props.theme.size.mobile.breakpoint}) {
-            &:not(:last-child)::after {
+            &:not(:last-of-type)::after {
                 content: '';
                 position: absolute;
                 right: 0;
@@ -91,7 +87,7 @@ const StyledButtonGroup = styled(ButtonGroup)`
         }
 
         /* Desktop: First item gets only left side rounded corners */
-        &:first-child button {
+        &:first-of-type button {
             @media (min-width: ${props => props.theme.size.mobile.breakpoint}) {
                 border-top-left-radius: 7px;
                 border-bottom-left-radius: 7px;
@@ -101,7 +97,7 @@ const StyledButtonGroup = styled(ButtonGroup)`
         }
 
         /* Desktop: Last item gets only right side rounded corners */
-        &:last-child button {
+        &:last-of-type button {
             @media (min-width: ${props => props.theme.size.mobile.breakpoint}) {
                 border-top-right-radius: 7px;
                 border-bottom-right-radius: 7px;
@@ -111,7 +107,7 @@ const StyledButtonGroup = styled(ButtonGroup)`
         }
 
         /* Mobile: First item gets only top rounded corners */
-        &:first-child button {
+        &:first-of-type button {
             @media (max-width: ${props => props.theme.size.mobile.breakpoint}) {
                 border-top-left-radius: 7px;
                 border-top-right-radius: 7px;
@@ -121,7 +117,7 @@ const StyledButtonGroup = styled(ButtonGroup)`
         }
 
         /* Mobile: Last item gets only bottom rounded corners */
-        &:last-child button {
+        &:last-of-type button {
             @media (max-width: ${props => props.theme.size.mobile.breakpoint}) {
                 border-bottom-left-radius: 7px;
                 border-bottom-right-radius: 7px;
@@ -130,7 +126,7 @@ const StyledButtonGroup = styled(ButtonGroup)`
             }
         }
         
-        &:not(:first-child):not(:last-child) button {
+        &:not(:first-of-type):not(:last-of-type) button {
             border-radius: 0;
         }
     }

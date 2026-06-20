@@ -235,10 +235,6 @@ Header.propTypes = {
     className: PropTypes.string,
 };
 
-Header.defaultProps = {
-    siteTitle: ``,
-};
-
 const StyledHeader = styled(Header)`
     background-image: linear-gradient(
         0deg,

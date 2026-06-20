@@ -18,14 +18,10 @@ const Button = ({ title, onClick, to, className }) => {
 
 Button.propTypes = {
     title: PropTypes.string,
-    onClick: PropTypes.function,
+    onClick: PropTypes.func,
     to: PropTypes.string,
     tooltip: PropTypes.string,
     className: PropTypes.string,
-};
-
-Button.defaultProps = {
-    siteTitle: '',
 };
 
 const ButtonDiv = styled('div')`
