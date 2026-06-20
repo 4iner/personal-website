@@ -50,7 +50,7 @@ const StyledExperienceItem = styled('div')`
         }
     }
 
-    &:last-child {
+    &:last-of-type {
         margin-bottom: 0;
         
         &:after {
@@ -92,7 +92,7 @@ const Description = styled('div')`
     li {
         margin-bottom: 0.75rem;
         
-        &:last-child {
+        &:last-of-type {
             margin-bottom: 0;
         }
     }

@@ -319,14 +319,14 @@ const StyledHeader = styled(Header)`
 
         &.open {
             span {
-                &:first-child {
+                &:first-of-type {
                     transform: rotate(45deg);
                 }
-                &:nth-child(2) {
+                &:nth-of-type(2) {
                     opacity: 0;
                     transform: translateX(-10px);
                 }
-                &:last-child {
+                &:last-of-type {
                     transform: rotate(-45deg);
                 }
             }

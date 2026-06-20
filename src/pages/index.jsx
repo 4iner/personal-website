@@ -79,7 +79,7 @@ const Card = styled(Link)`
     overflow: hidden;
     transition: transform 0.2s ease, background-color 0.2s ease;
 
-    &:last-child {
+    &:last-of-type {
         margin-bottom: 0;
     }
 

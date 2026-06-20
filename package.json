@@ -12,7 +12,7 @@
     "@react-spring/three": "^9.7.5",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
-    "@types/three": "^0.184.0",
+    "@types/three": "~0.174.0",
     "babel-plugin-styled-components": "^2.3.0",
     "gatsby": "^5.16.1",
     "gatsby-plugin-image": "^3.16.0",
@@ -28,7 +28,7 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "styled-components": "^6.4.2",
-    "three": "^0.184.0"
+    "three": "~0.174.0"
   },
   "devDependencies": {
     "eslint": "^8.57.1",
