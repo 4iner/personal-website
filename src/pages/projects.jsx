@@ -28,6 +28,10 @@ const ProjectList = styled('div')`
     gap: 0;
 `;
 
+export function Head() {
+    return <Seo title="Projects" />
+}
+
 const ProjectsPage = () => {
     const projects = React.useMemo(() => [
         {
@@ -50,7 +54,6 @@ const ProjectsPage = () => {
 
     return (
         <Layout>
-            <Seo title={'Projects'} />
             <ProjectsContainer>
                 <Title>My Projects</Title>
                 <ProjectList>

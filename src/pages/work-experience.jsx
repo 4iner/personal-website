@@ -28,6 +28,10 @@ const ExperienceList = styled('div')`
     gap: 0;
 `;
 
+export function Head() {
+    return <Seo title="Work Experience" />
+}
+
 const WorkExperiencePage = () => {
     const experiences = React.useMemo(() => [
         {
@@ -90,7 +94,6 @@ const WorkExperiencePage = () => {
 
     return (
         <Layout>
-            <Seo title="Work Experience" />
             <ExperienceContainer>
                 <Title>Work Experience</Title>
                 <ExperienceList>

@@ -177,6 +177,10 @@ const SectionCard = React.memo(({ section, isFirst }) => (
     </Card>
 ));
 
+export function Head() {
+    return <Seo title="Home" />
+}
+
 const IndexPage = () => {
     const [isExploring, setIsExploring] = React.useState(false);
 
@@ -186,7 +190,6 @@ const IndexPage = () => {
 
     return (
         <Layout>
-            <Seo title="Home" />
             <PageContainer isExploring={isExploring}>
                 <HeroSection isExploring={isExploring}>
                     <Title isExploring={isExploring}>

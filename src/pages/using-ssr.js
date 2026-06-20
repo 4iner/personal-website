@@ -4,10 +4,13 @@ import { Link } from "gatsby"
 import Layout from "../components/Layout"
 import Seo from "../components/seo"
 
+export function Head() {
+  return <Seo title="Using SSR" />
+}
+
 const UsingSSR = ({ serverData }) => {
   return (
     <Layout>
-      <Seo title="Using SSR" />
       <h1>
         This page is <b>rendered server-side</b>
       </h1>

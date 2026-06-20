@@ -6,7 +6,6 @@ module.exports = {
     siteUrl: `https://mufasa.ca/`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,

@@ -175,10 +175,13 @@ const SkillTag = styled('span')`
   border: 1px solid ${props => props.theme.color.accent}40;
 `;
 
+export function Head() {
+  return <Seo title="About Me" />
+}
+
 const AboutPage = () => {
   return (
     <Layout>
-      <Seo title="About Me" />
       <AboutContainer>
         <HeroSection>
           <HeroContent>

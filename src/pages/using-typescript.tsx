@@ -11,12 +11,15 @@ type DataProps = {
   }
 }
 
+export function Head() {
+  return <Seo title="Using TypeScript" />
+}
+
 const UsingTypescript: React.FC<PageProps<DataProps>> = ({
   data,
   location,
 }) => (
   <Layout>
-    <Seo title="Using TypeScript" />
     <h1>
       Gatsby supports <b>TypeScript by default</b>
     </h1>

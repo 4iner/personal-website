@@ -12,25 +12,25 @@ jobs:
     environment: production
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '20.10'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install Project Dependencies
         run: npm ci
 
       - name: Install Gatsby CLI
-        run: npm install -g gatsby-cli@5.12.4
+        run: npm install -g gatsby-cli@5.16.1
 
       - name: Build
         run: NODE_OPTIONS=--max_old_space_size=8192 gatsby build
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v3
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -43,12 +43,4 @@ jobs:
         run: npm run deploy
 
       - name: Invalidate CloudFront Cache
-        uses: badsyntax/github-action-aws-cloudfront@master
-        id: invalidate-cloudfront-cache
-        with:
-          distribution-id: ${{ secrets.CFDistributionId }}
-          aws-region: 'us-east-1'
-          origin-prefix: ''
-          include-origin-prefix: false
-          invalidate-paths: '/*'
-          default-root-object: 'index.html'
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CFDistributionId }} --paths "/*"
