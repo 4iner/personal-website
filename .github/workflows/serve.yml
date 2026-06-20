@@ -2,8 +2,8 @@ name: Build and Deploy
 
 on:
   push:
-    branches: 
-      -  main
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
@@ -12,30 +12,38 @@ jobs:
     environment: production
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v3
+
       - name: Install Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: '20.10'
+          cache: 'npm'
+
       - name: Install Project Dependencies
         run: npm ci
+
       - name: Install Gatsby CLI
         run: npm install -g gatsby-cli@5.12.4
+
       - name: Build
-        run: gatsby build
-      - name: Deploy
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: npm run deploy
+        run: NODE_OPTIONS=--max_old_space_size=8192 gatsby build
+
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v3
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - uses: badsyntax/github-action-aws-cloudfront@master
-        name: Invalidate CloudFront Cache
+
+      - name: Deploy to S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: npm run deploy
+
+      - name: Invalidate CloudFront Cache
+        uses: badsyntax/github-action-aws-cloudfront@master
         id: invalidate-cloudfront-cache
         with:
           distribution-id: ${{ secrets.CFDistributionId }}

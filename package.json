@@ -56,7 +56,7 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "build": "export NODE_OPTIONS=--max_old_space_size=8192 && gatsby build",
+    "build": "NODE_OPTIONS=--max_old_space_size=8192 gatsby build",
     "develop": "CHOKIDAR_USEPOLLING=true gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
     "start": "gatsby develop -H 0.0.0.0",

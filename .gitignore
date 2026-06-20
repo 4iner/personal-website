@@ -61,6 +61,11 @@ public
 # Mac files
 .DS_Store
 
+# Windows files
+*:Zone.Identifier
+Thumbs.db
+Desktop.ini
+
 # Yarn
 yarn-error.log
 .pnp/
