@@ -9,10 +9,10 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^9.1.1",
     "@mui/material": "^9.1.1",
-    "@react-spring/three": "^9.7.5",
+    "@react-spring/three": "^10.1.1",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
-    "@types/three": "~0.174.0",
+    "@types/three": "^0.184.1",
     "babel-plugin-styled-components": "^2.3.0",
     "gatsby": "^5.16.1",
     "gatsby-plugin-image": "^3.16.0",
@@ -31,11 +31,11 @@
     "three": "~0.174.0"
   },
   "devDependencies": {
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-react": "^7.37.4",
-    "prettier": "^3.5.3",
+    "eslint": "^10.5.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "eslint-plugin-react": "^7.37.5",
+    "prettier": "^3.8.4",
     "typescript": "^6.0.3",
     "typescript-plugin-styled-components": "^3.0.0",
     "typescript-styled-plugin": "^0.18.3"
@@ -46,7 +46,7 @@
   "license": "0BSD",
   "scripts": {
     "build": "NODE_OPTIONS=--max_old_space_size=8192 gatsby build",
-    "develop": "CHOKIDAR_USEPOLLING=true gatsby develop",
+    "develop": "CHOKIDAR_USEPOLLING=true gatsby develop -H 0.0.0.0",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
     "start": "gatsby develop -H 0.0.0.0",
     "serve": "gatsby serve",
@@ -60,5 +60,8 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "overrides": {
+    "lmdb": "2.5.3"
   }
 }
