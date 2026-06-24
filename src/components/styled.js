@@ -56,11 +56,6 @@ const textSize = size => {
     }
 };
 
-// eslint-disable-next-line no-unused-vars
-const samples = styled('div')`
-    color: white;
-`;
-
 styled.textSize = textSize;
 
 export default styled;

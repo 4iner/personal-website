@@ -187,9 +187,9 @@ const AboutPage = () => {
           <HeroContent>
             <h1>About Me</h1>
             <p>
-              A passionate software developer with a love for creating elegant solutions
-              to complex problems. I believe in the power of technology to make the world
-              a better place.
+              A software developer who enjoys turning complex problems into clean,
+              maintainable solutions — across the full stack, from backend services
+              to the browser.
             </p>
           </HeroContent>
           <ProfileImageWrapper>
@@ -201,10 +201,10 @@ const AboutPage = () => {
           <InfoCard>
             <h2>Background</h2>
             <p>
-              With over 5 years of experience in software development, I've worked
-              on a wide range of projects from web applications to system architecture.
-              My journey in tech started with a curiosity about how things work, which
-              led me to pursue a degree in Software Engineering.
+              Over five years of experience in software development, on projects
+              ranging from web applications to system architecture. I hold a degree
+              in Software Engineering and have been building software professionally
+              ever since.
             </p>
             <p>
               Currently, I'm focused on full-stack development, with a particular
@@ -248,8 +248,8 @@ const AboutPage = () => {
               <li>Continuous learning 📚</li>
             </ul>
             <p>
-              I believe in sharing knowledge and helping others grow in their
-              technical journey, as well as traveling the world while experiencing new cultures.
+              I like sharing what I know and helping others grow, and seeing new
+              places and cultures along the way.
             </p>
           </InfoCard>
 

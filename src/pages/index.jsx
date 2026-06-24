@@ -164,18 +164,17 @@ const SECTIONS = [
     }
 ];
 
-const SectionCard = React.memo(({ section, isFirst }) => (
-    <Card 
-        to={section.link} 
-        isFirst={isFirst}
-    >
-        <h2>
-            <Emoji>{section.emoji}</Emoji>
-            {section.title}
-        </h2>
-        <p>{section.description}</p>
-    </Card>
-));
+const SectionCard = React.memo(function SectionCard({ section, isFirst }) {
+    return (
+        <Card to={section.link} isFirst={isFirst}>
+            <h2>
+                <Emoji>{section.emoji}</Emoji>
+                {section.title}
+            </h2>
+            <p>{section.description}</p>
+        </Card>
+    );
+});
 
 export function Head() {
     return <Seo title="Home" />

@@ -1,8 +1,7 @@
-/* eslint-disable react/no-unknown-property */
 import * as React from 'react';
 import { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Text, OrbitControls, Html } from '@react-three/drei';
+import { Html } from '@react-three/drei';
 import Layout from '../components/Layout';
 import SkillCard from '../components/SkillCard';
 import styled from '../components/styled';
@@ -72,7 +71,6 @@ const skills = [
 
 function Carousel() {
     const [activeSkill, setActiveSkill] = useState(null);
-    const [activeIndex, setActiveIndex] = useState(null);
     const groupRef = useRef();
     const targetRotation = useRef(0);
     const isDragging = useRef(false);
@@ -101,7 +99,7 @@ function Carousel() {
         return () => window.removeEventListener('resize', updateRadius);
     }, []);
 
-    useFrame((state, delta) => {
+    useFrame(() => {
         if (!activeSkill && !isDragging.current) {
             if (Math.abs(dragVelocity.current) > 0.0001) {
                 dragVelocity.current *= 0.98;
@@ -146,18 +144,11 @@ function Carousel() {
         }
     };
 
-    const handlePointerUp = (e) => {
-        if (isDragging.current) {
-            isDragging.current = false;
-            
-            const clientX = e.touches ? 
-                e.changedTouches[0].clientX : 
-                e.clientX;
-            
-            const deltaX = clientX - previousMouseX.current;
-            const deltaTime = performance.now() - previousMouseX.current;
-            dragVelocity.current = (deltaX * 0.001) / (deltaTime || 1);
-        }
+    const handlePointerUp = () => {
+        // Keep the velocity accumulated from the last pointer move as the
+        // fling momentum (mirrors the touch handler). The previous calc here
+        // mixed a clientX coordinate with a timestamp and always produced ~0.
+        isDragging.current = false;
     };
 
     const handleTouchStart = (e) => {
@@ -226,13 +217,11 @@ function Carousel() {
 
         if (activeSkill === skill) {
             setActiveSkill(null);
-            setActiveIndex(null);
             groupRef.current.rotation.y = groupRef.current.rotation.y % (Math.PI * 2);
             targetRotation.current = groupRef.current.rotation.y;
         } else {
             setActiveSkill(skill);
-            setActiveIndex(index);
-            
+
             const currentRotation = groupRef.current.rotation.y % (Math.PI * 2);
             const normalizedCurrent = currentRotation < 0 ? currentRotation + Math.PI * 2 : currentRotation;
             
@@ -308,7 +297,6 @@ function Carousel() {
                             <button 
                                 onClick={() => {
                                     setActiveSkill(null);
-                                    setActiveIndex(null);
                                 }}
                                 style={{
                                     background: 'white',

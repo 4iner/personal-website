@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import styled from './styled';
-import Button from './Button';
 
 const ButtonGroup = ({ children, className }) => {
     return <div className={className}>{children}</div>;

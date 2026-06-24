@@ -141,8 +141,8 @@ const ContactForm = () => {
       } else {
         throw new Error('Failed to send message');
       }
-    } catch (error) {
-      setStatus({ 
+    } catch {
+      setStatus({
         type: 'error', 
         message: 'Something went wrong. Please try again.' 
       });

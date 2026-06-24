@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
 import Button from './Button';
 import ButtonGroup from './ButtonGroup';
 import styled from './styled';
@@ -148,7 +147,7 @@ const DownloadHint = styled('span')`
     }
 `;
 
-const Header = ({ siteTitle, className }) => {
+const Header = ({ className }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [showHint, setShowHint] = useState(false);
@@ -231,7 +230,6 @@ const Header = ({ siteTitle, className }) => {
 };
 
 Header.propTypes = {
-    siteTitle: PropTypes.string,
     className: PropTypes.string,
 };
 
