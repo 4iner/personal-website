@@ -35,8 +35,23 @@ export function Head() {
 const WorkExperiencePage = () => {
     const experiences = React.useMemo(() => [
         {
+            company: 'Posterity Group',
+            period: 'Oct 2025 - Present',
+            description: `Full-Stack Software Developer building an energy modelling system using React/Next.js, a Node/NestJS backend, a GoLang legacy runner, and a Python/Marimo API service.
+
+<ul>
+<li>Ported the legacy energy modelling software from a Windows-only VM to a Linux-compatible build by removing Windows-specific VB code, shrinking the image size from ~3 GB to ~500 MB</li>
+
+<li>Built a web UI to execute the legacy software on the cloud — previously only runnable on Windows desktops — cutting run times by ~40% and freeing users from waiting on their local machines</li>
+
+<li>Designed and implemented a graph-based UI for visualizing energy systems, replacing the previous folder-based workflow and giving users a clear, interactive view of their modelling data</li>
+
+<li>Continuously gathering and applying feedback from end-users (colleagues within the organization) to iterate on the product</li>
+</ul>`
+        },
+        {
             company: 'Superna',
-            period: '2022 - Present',
+            period: '2022 - 2025',
             description: `Full-Stack Software Developer working on enterprise-level data archiving and backup solutions.
 
 <ul>
