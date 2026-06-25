@@ -36,19 +36,19 @@ const ProjectsPage = () => {
     const projects = React.useMemo(() => [
         {
             title: 'This website',
-            description: 'I wanted a project where I had full ownership over the component design, styling, and UX decisions — not just features inside an existing codebase. Built with Gatsby (React) and deployed to AWS S3 + CloudFront with a single command. I used it as a reason to get better at building reusable components from scratch, setting up ESLint properly, and thinking about performance. It also makes for a more interesting resume than a PDF.'
+            description: 'Built with Gatsby and deployed to AWS S3 + CloudFront with a single command. I wanted somewhere to practice building components and making UX decisions from scratch, outside of an existing codebase. Also a better resume format than a PDF.'
         },
         {
             title: 'Clinic CRM',
-            description: 'A freelance project I took on during the COVID lockdowns in 2020. A local clinic needed a way to manage patients and appointments, so I built them a full app — React frontend, Spring Boot backend, SQL database, all hosted on AWS.\n\nI kept costs low by using static S3 hosting for the frontend and a JWT-based auth flow that didn\'t need a heavy session server. The main thing I got out of this was experience scoping and delivering a real product for a non-technical client.\n\nYou can try a demo at https://clinic-app.mufasa.ca — Username: "Demo", Password: "ClinicAppDemo". Give it a minute or two to start up after signing in.'
+            description: 'A freelance project from 2020. A local clinic needed patient and appointment management, so I built them an app with React, Spring Boot, and SQL on AWS. JWT auth, static S3 for the frontend.\n\nDemo at https://clinic-app.mufasa.ca -- Username: "Demo", Password: "ClinicAppDemo". Give it a minute to start up after signing in.'
         },
         {
             title: 'CrossPath',
-            description: "A puzzle game built in Processing, inspired by Linedoku's CrossPath — you expand numbered nodes across a grid until every cell is covered. I coded the whole thing on a 12-hour road trip, just for the fun of it. It was a good reminder that side projects don't need a reason beyond wanting to build something. Download it at https://github.com/4iner/CrossPath/releases/tag/initial"
+            description: "A puzzle game built in Processing, based on Linedoku's CrossPath. You expand numbered nodes across a grid until every cell is covered. I wrote the whole thing on a 12-hour road trip. Download it at https://github.com/4iner/CrossPath/releases/tag/initial"
         },
         {
             title: 'GUI Chess',
-            description: "Carleton had us implement text-based Chess as an assignment. I finished it and thought — why stop there? I took the same game logic and classes and built a visual version using Java Swing. I mostly just wanted to see if I could, and it turned out to be a good exercise in separating game logic from presentation. Download it at https://github.com/4iner/GUI-Chess/releases/tag/initial"
+            description: "Carleton had us build a text-based Chess game for an assignment. I finished it and kept going, turning the same logic into a graphical version using Java Swing. Download it at https://github.com/4iner/GUI-Chess/releases/tag/initial"
         }
     ], []);
 

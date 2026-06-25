@@ -187,9 +187,7 @@ const AboutPage = () => {
           <HeroContent>
             <h1>About Me</h1>
             <p>
-              Software developer based in Ottawa. I've worked across the stack —
-              backends, frontends, cloud infra, integrations — and I tend to end up
-              caring a lot about the details that make something actually usable.
+              Software developer based in Ottawa, working in the industry since 2018.
             </p>
           </HeroContent>
           <ProfileImageWrapper>
@@ -201,13 +199,9 @@ const AboutPage = () => {
           <InfoCard>
             <h2>Background</h2>
             <p>
-              I studied Software Engineering at Carleton and have been working in
-              the industry since 2018. I've done integrations consulting, enterprise
-              backend work, a short stint in telecom, and now energy modelling software.
-            </p>
-            <p>
-              The through-line has been full-stack work — I'm comfortable on the
-              backend but I also care about the frontend being good, not just functional.
+              Studied Software Engineering at Carleton. Since then I've worked in
+              integrations consulting, enterprise backup software, telecom, and now
+              energy modelling. Mostly full-stack work across all of it.
             </p>
           </InfoCard>
 
@@ -232,19 +226,13 @@ const AboutPage = () => {
               <li>Teaching and mentoring 📖</li>
               <li>Traveling 🌍</li>
             </ul>
-            <p>
-              I also enjoy helping people get into software development. There's
-              something satisfying about explaining something until it clicks for someone.
-            </p>
           </InfoCard>
 
           <InfoCard>
             <h2>What I Value</h2>
             <p>
-              I care about the code being readable to the next person, and the product
-              being usable to the actual user. I tend to ask "why" a lot — why is this
-              built this way, why is this the requirement — because the answer usually
-              changes what you build.
+              Readable code and software that does what users actually expect.
+              I ask a lot of questions before building something.
             </p>
           </InfoCard>
         </ContentSection>
