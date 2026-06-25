@@ -36,19 +36,19 @@ const ProjectsPage = () => {
     const projects = React.useMemo(() => [
         {
             title: 'This website',
-            description: 'This project was made to experiment more with React. All of the elements were made using plain HTML, styled with styled-components (and css), on the Gatsby framework so that serving it on AWS S3 using Cloudfront will be as simple as a single command. Custom-made components, UX, ESLinting, and css are some things that I wanted to improve on for my professional career, and this makes for a more fun resume!'
+            description: 'I wanted a project where I had full ownership over the component design, styling, and UX decisions — not just features inside an existing codebase. Built with Gatsby (React) and deployed to AWS S3 + CloudFront with a single command. I used it as a reason to get better at building reusable components from scratch, setting up ESLint properly, and thinking about performance. It also makes for a more interesting resume than a PDF.'
         },
         {
             title: 'Clinic CRM',
-            description: 'A freelance project made during the 2020 COVID pandemic using React, Spring-Boot Java, and SQL. This combination provides a simple, quick, and efficient setup. The application is hosted entirely on AWS to ensure high availability when users need it.\n\nFeatures include static S3 website hosting and JWT security for a low-cost, highly-available secure application. You can try the demo at https://clinic-app.mufasa.ca using:\n\nUsername: "Demo"\nPassword: "ClinicAppDemo"\n\nNote: Please allow 1-2 minutes after clicking sign in, as the backend instance needs to start up. If you encounter an error, please try again or contact me through the "About me" section.'
+            description: 'A freelance project I took on during the COVID lockdowns in 2020. A local clinic needed a way to manage patients and appointments, so I built them a full app — React frontend, Spring Boot backend, SQL database, all hosted on AWS.\n\nI kept costs low by using static S3 hosting for the frontend and a JWT-based auth flow that didn\'t need a heavy session server. The main thing I got out of this was experience scoping and delivering a real product for a non-technical client.\n\nYou can try a demo at https://clinic-app.mufasa.ca — Username: "Demo", Password: "ClinicAppDemo". Give it a minute or two to start up after signing in.'
         },
         {
             title: 'CrossPath',
-            description: "A windows application game, created with the Processing IDE. This game was inspired by Linedoku's CrossPath, where you have to expand nodes on a grid orthogonally by the number indicated on them. This was purely for fun, as it was developed on a 12-hour roadtrip. You can download and try the game at https://github.com/4iner/CrossPath/releases/tag/initial"
+            description: "A puzzle game built in Processing, inspired by Linedoku's CrossPath — you expand numbered nodes across a grid until every cell is covered. I coded the whole thing on a 12-hour road trip, just for the fun of it. It was a good reminder that side projects don't need a reason beyond wanting to build something. Download it at https://github.com/4iner/CrossPath/releases/tag/initial"
         },
         {
             title: 'GUI Chess',
-            description: "One of Carleton's assignments was to program a text-based Chess for one of our classes. I was bored after completing it, so I decided to go a step further and use the implementation of the logic and the classes to make it visual, with the Swing Java library. You can download and try the game at https://github.com/4iner/GUI-Chess/releases/tag/initial"
+            description: "Carleton had us implement text-based Chess as an assignment. I finished it and thought — why stop there? I took the same game logic and classes and built a visual version using Java Swing. I mostly just wanted to see if I could, and it turned out to be a good exercise in separating game logic from presentation. Download it at https://github.com/4iner/GUI-Chess/releases/tag/initial"
         }
     ], []);
 

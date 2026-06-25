@@ -187,9 +187,9 @@ const AboutPage = () => {
           <HeroContent>
             <h1>About Me</h1>
             <p>
-              A software developer who enjoys turning complex problems into clean,
-              maintainable solutions — across the full stack, from backend services
-              to the browser.
+              Software developer based in Ottawa. I've worked across the stack —
+              backends, frontends, cloud infra, integrations — and I tend to end up
+              caring a lot about the details that make something actually usable.
             </p>
           </HeroContent>
           <ProfileImageWrapper>
@@ -201,29 +201,18 @@ const AboutPage = () => {
           <InfoCard>
             <h2>Background</h2>
             <p>
-              Over five years of experience in software development, on projects
-              ranging from web applications to system architecture. I hold a degree
-              in Software Engineering and have been building software professionally
-              ever since.
+              I studied Software Engineering at Carleton and have been working in
+              the industry since 2018. I've done integrations consulting, enterprise
+              backend work, a short stint in telecom, and now energy modelling software.
             </p>
             <p>
-              Currently, I'm focused on full-stack development, with a particular
-              interest in:
+              The through-line has been full-stack work — I'm comfortable on the
+              backend but I also care about the frontend being good, not just functional.
             </p>
-            <ul>
-              <li>Building scalable web applications</li>
-              <li>Cloud architecture</li>
-              <li>User experience design</li>
-              <li>Performance optimization</li>
-            </ul>
           </InfoCard>
 
           <InfoCard>
             <h2>Technical Skills</h2>
-            <p>
-              I'm constantly learning and expanding my skill set. Here are some of
-              the technologies I work with regularly:
-            </p>
             <SkillsGrid>
               <SkillTag>Java</SkillTag>
               <SkillTag>React</SkillTag>
@@ -237,36 +226,25 @@ const AboutPage = () => {
           </InfoCard>
 
           <InfoCard>
-            <h2>Interests</h2>
-            <p>
-              Beyond coding, I'm passionate about:
-            </p>
+            <h2>Outside of Work</h2>
             <ul>
               <li>Skiing ⛷️</li>
               <li>Teaching and mentoring 📖</li>
               <li>Traveling 🌍</li>
-              <li>Continuous learning 📚</li>
             </ul>
             <p>
-              I like sharing what I know and helping others grow, and seeing new
-              places and cultures along the way.
+              I also enjoy helping people get into software development. There's
+              something satisfying about explaining something until it clicks for someone.
             </p>
           </InfoCard>
 
           <InfoCard>
-            <h2>Professional Philosophy</h2>
+            <h2>What I Value</h2>
             <p>
-              I approach every project with these core principles:
-            </p>
-            <ul>
-              <li>Write clean, maintainable code</li>
-              <li>Focus on user experience</li>
-              <li>Embrace continuous learning</li>
-              <li>Collaborate effectively with teams</li>
-            </ul>
-            <p>
-              I believe that the best solutions come from understanding both the
-              technical requirements and the human aspects of a problem.
+              I care about the code being readable to the next person, and the product
+              being usable to the actual user. I tend to ask "why" a lot — why is this
+              built this way, why is this the requirement — because the answer usually
+              changes what you build.
             </p>
           </InfoCard>
         </ContentSection>

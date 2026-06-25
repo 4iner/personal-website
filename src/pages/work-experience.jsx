@@ -37,72 +37,72 @@ const WorkExperiencePage = () => {
         {
             company: 'Posterity Group',
             period: 'Oct 2025 - Present',
-            description: `Full-Stack Software Developer building an energy modelling system using React/Next.js, a Node/NestJS backend, a GoLang legacy runner, and a Python/Marimo API service.
+            description: `Full-Stack Developer on an energy modelling platform — React/Next.js frontend, NestJS backend, GoLang legacy runner, and a Marimo Python API service.
 
 <ul>
-<li>Ported the legacy energy modelling software from a Windows-only VM to a Linux-compatible build by removing Windows-specific VB code, shrinking the image size from ~3 GB to ~500 MB</li>
+<li>Migrated the legacy energy modelling software off a Windows-only VM by stripping out VB-specific code, making it Linux-compatible and cutting the image size from ~3 GB to ~500 MB</li>
 
-<li>Built a web UI to execute the legacy software on the cloud — previously only runnable on Windows desktops — cutting run times by ~40% and freeing users from waiting on their local machines</li>
+<li>Built a web UI to run the legacy software on the cloud; it previously required a local Windows machine, so this cut run times by ~40% and let users get their computers back while jobs ran remotely</li>
 
-<li>Designed and implemented a graph-based UI for visualizing energy systems, replacing the previous folder-based workflow and giving users a clear, interactive view of their modelling data</li>
+<li>Built a graph-based UI so users can see and navigate their energy system — previously everything was managed through folders, which didn't scale well</li>
 
-<li>Continuously gathering and applying feedback from end-users (colleagues within the organization) to iterate on the product</li>
+<li>Work closely with end-users (colleagues at the organization) and regularly ship changes based on their feedback</li>
 </ul>`
         },
         {
             company: 'Superna',
             period: '2022 - 2025',
-            description: `Full-Stack Software Developer working on enterprise-level data archiving and backup solutions.
+            description: `Full-Stack Developer on GoldenCopy, an enterprise data archiving and backup product — Java/GraphQL backend, React frontend, Python CLI.
 
 <ul>
-<li>Led architecture, design, and development of 21 new features and enhancements to the GoldenCopy application using Java backend with a GraphQL API, and React frontend, with python as the CLI</li>
+<li>Architected and shipped 21 features and enhancements end-to-end, from design through to production</li>
 
-<li>Developed an automated testing framework using Python to run over 14 integration tests on the system to ensure less accidental bugs</li>
+<li>Wrote a Python integration testing framework covering 14+ test scenarios, which caught regressions before they reached users</li>
 
-<li>Identified, and fixed, over 50 different bugs in the system</li>
+<li>Tracked down and resolved 50+ bugs across the stack</li>
 </ul>`
         },
         {
             company: 'Modulus Data',
             period: '2020 - 2022',
-            description: `Integration Consultant and Developer, specializing in HR system integrations.
+            description: `Integration Developer and Consultant, building HR system integrations for clients using iPaaS platforms and Groovy scripting.
 
 <ul>
-<li>Developed over 30 data integrations, specialized in HR systems, using iPaaS solutions and Groovy scripting to prevent double data entry, create seamless real-time integrations, and balance journal entries for clients</li>
+<li>Built 30+ integrations across HR systems including ADP, Oracle HCM, BambooHR, Greenhouse, and Predictive Index — covering real-time data sync, payroll journal balancing, and eliminating double data entry</li>
 
-<li>Conceptualized a testing framework that would reduce project turnover for a specific HR system by approximately a week and a half</li>
+<li>Designed a testing framework for one HR system that cut typical project delivery time by about a week and a half</li>
 
-<li>Reviewed, debugged, and corrected peers' Groovy code to adhere to client requirements, as well as training new employees to utilize integration software</li>
+<li>Reviewed and debugged peers' Groovy code, and trained new hires on the integration tooling</li>
 
-<li>Researched and documented the caveats of multiple HR system APIs, such as ADP, Oracle HCM, BambooHR, Greenhouse, and Predictive Index</li>
+<li>Documented API quirks and gotchas for each HR system we worked with, so the next person didn't have to rediscover them</li>
 </ul>`
         },
         {
             company: 'Amdocs',
             period: '2019',
-            description: `Software Engineering Intern focused on telecommunications software.
+            description: `Software Engineering Intern on a telecommunications platform built with Spring Boot and React/Redux.
 
 <ul>
-<li>Automated and implemented backup and recovery procedures using Kubernetes for a Spring Boot system that resulted in greater availability and scalability</li>
+<li>Set up automated backup and recovery for the Spring Boot system using Kubernetes, improving availability and making the deployment more resilient</li>
 
-<li>Developed Helm charts for the Kubernetes elements to allow for faster, more manageable deployments on the cluster</li>
+<li>Wrote Helm charts for the Kubernetes components so the team could deploy and manage the cluster more easily</li>
 
-<li>Resolved problems introduced through database migration in the Spring Boot backend, and the React-Redux frontend</li>
+<li>Fixed data integrity issues that surfaced after a database migration, across both the backend and the React-Redux frontend</li>
 </ul>`
         },
         {
             company: 'Statistics Canada',
             period: '2018 - 2019',
-            description: `Junior Developer working on data analysis tools and infrastructure.
+            description: `Junior Developer — split time between building internal tools and researching data pipeline technologies.
 
 <ul>
-<li>Developed a website for viewing logs fetched through an API in C# Html and JavaScript, using the ASP.NET Core libraries, where the log details are updated in real-time using ajax calls to partial views</li>
+<li>Built a real-time log viewer in ASP.NET Core (C#/JS) that polled an internal API and updated the page live using AJAX partial views</li>
 
-<li>Developed and appended additional features to G-Link, a record linkage software, using C#, Windows Presentation Foundation, and the M-V-VM pattern, based on client requirements</li>
+<li>Added features to G-Link, a record linkage tool, using C#, WPF, and MVVM — working directly from client requirements</li>
 
-<li>Presented research findings on Apache Nifi, an open-source data pipelining tool, and Kylo, a tool that utilizes Nifi, by implementing them to automate a Use Case at Statistics Canada</li>
+<li>Researched Apache NiFi and Kylo by actually implementing them against a real Statistics Canada use case, then presented the findings to the team</li>
 
-<li>Wrote technical documents on all findings, such as comparisons between Hive and HBase, Best Practices for using NiFi, Kylo, and MiNiFi, and SSL Certificate setup for a NiFi deployment, to pass on to next student and for developers</li>
+<li>Wrote technical docs on everything — NiFi best practices, Hive vs. HBase, SSL setup — so the next student (and the devs) wouldn't start from scratch</li>
 </ul>`
         }
     ], []);
